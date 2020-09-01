@@ -1,6 +1,6 @@
 {
   "name": "@lemueldls/illuminated",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "A modern TypeScript rewrite of the Illuminated.js library originally written by Gaëtan Renaudeau.",
   "main": "./dist/illuminated.js",
   "module": "./dist/illuminated.esm.js",
