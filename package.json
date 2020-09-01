@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A backwards-compatible TypeScript rewrite of the Illuminated.js library written by Gaëtan Renaudeau.",
   "main": "./dist/illuminated.js",
-  "module": "./dist/illuminated.js",
+  "module": "./dist/illuminated.esm.js",
   "types": "./dist/illuminated.d.ts",
   "files": [
     "dist"
@@ -18,16 +18,29 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "eslint": "^7.8.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "prettier": "^2.1.1",
     "rollup": "^2.26.9",
+    "rollup-plugin-terser": "^7.0.1",
     "rollup-plugin-typescript2": "^0.27.2",
-    "terser": "^5.2.1",
     "tslib": "^2.0.1",
+    "typedoc": "^0.19.0",
     "typescript": "^4.0.2"
   },
   "scripts": {
     "test": "",
+    "docs": "typedoc",
     "build": "rollup -c rollup.config.ts",
-    "postbuild": "tsc -d --emitDeclarationOnly --outFile dist/illuminated.d.ts src/index.ts"
+    "lint": "eslint \"**/*.ts\""
   },
   "keywords": [
     "illuminated",
