@@ -1,4 +1,4 @@
-import { Bounds } from "./bounds";
+import { Bounds } from "./types";
 import { _2PI } from "./constants";
 import OpaqueObject, { OpaqueObjectOptions } from "./OpaqueObject";
 import { getTan2, path } from "./utils";

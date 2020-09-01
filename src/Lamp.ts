@@ -1,6 +1,6 @@
 import { createCanvasAnd2dContext } from "utils";
 
-import { Bounds } from "./bounds";
+import { Bounds } from "./types";
 import { GOLDEN_ANGLE } from "./constants";
 import Light, { LightOptions } from "./Light";
 import { CanvasAndContext, getRGBA } from "./utils";

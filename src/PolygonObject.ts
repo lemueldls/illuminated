@@ -1,4 +1,4 @@
-import { Bounds } from "./bounds";
+import { Bounds } from "./types";
 import OpaqueObject, { OpaqueObjectOptions } from "./OpaqueObject";
 import { path } from "./utils";
 import Vec2 from "./Vec2";

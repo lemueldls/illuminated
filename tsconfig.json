@@ -5,7 +5,7 @@
     "importHelpers": true,
     "removeComments": false,
     "module": "esnext",
-    "target": "es2020",
+    "target": "es6",
     "rootDir": "./src",
     "baseUrl": "./src",
     "outDir": "./dist",
@@ -23,6 +23,6 @@
     "name": "Illuminated",
     "hideGenerator": true
   },
-  "files": ["src/illuminated.ts"],
+  "files": ["./src/illuminated.ts", "./src/types.d.ts"],
   "exclude": ["node_modules/"]
 }

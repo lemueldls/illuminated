@@ -1,4 +1,4 @@
-import { Bounds } from "./bounds";
+import { Bounds } from "./types";
 import Vec2 from "./Vec2";
 
 // eslint-disable-next-line no-use-before-define

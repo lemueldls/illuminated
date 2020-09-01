@@ -1,4 +1,4 @@
-import { Bounds } from "./bounds";
+import { Bounds } from "./types";
 import { CanvasAndContext, createCanvasAnd2dContext } from "./utils";
 import Vec2 from "./Vec2";
 
