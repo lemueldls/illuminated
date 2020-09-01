@@ -1,19 +1,27 @@
 import typescript from "rollup-plugin-typescript2";
+import { terser } from "rollup-plugin-terser";
 
 export default {
-  input: "./src/index.ts",
+  input: "./src/illuminated.ts",
   output: [
     {
       file: "dist/illuminated.js",
       format: "umd",
       name: "Illuminated",
-      sourcemap: true,
+      sourcemap: true
     },
     {
       file: "dist/illuminated.esm.js",
       format: "es",
-      sourcemap: true,
-    },
+      sourcemap: true
+    }
   ],
-  plugins: [typescript()],
+  plugins: [
+    typescript(),
+    terser({
+      format: {
+        comments: false
+      }
+    })
+  ]
 };
