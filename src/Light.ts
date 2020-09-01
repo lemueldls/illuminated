@@ -13,16 +13,22 @@ export default class Light {
 
   /**
    * Position of this light. (0,0) by default.
+   *
+   * @default new Vec2();
    */
   public position = new Vec2();
 
   /**
    * Intensity of this light.
+   *
+   * @default 100;
    */
   public distance = 100;
 
   /**
    * How diffuse this light is.
+   *
+   * @default 0.8;
    */
   public diffuse = 0.8;
 

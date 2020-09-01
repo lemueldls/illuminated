@@ -10,11 +10,15 @@ export type LineObjectOptions = Partial<Pick<LineObject, "a" | "b">> & PolygonOb
 export default class LineObject extends PolygonObject {
   /**
    * A vector that is the first point of the line.
+   *
+   * @default new Vec2();
    */
   public a = new Vec2();
 
   /**
    * A vector that is the last point of the line.
+   *
+   * @default new Vec2();
    */
   public b = new Vec2();
 

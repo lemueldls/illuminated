@@ -10,11 +10,15 @@ export type DarkMaskOptions = Partial<Pick<DarkMask, "lights" | "color">>;
 export default class DarkMask {
   /**
    * An array of {@linkcode Light} objects that illuminate the rest of the scene.
+   *
+   * @default [];
    */
   public lights: Light[] = [];
 
   /**
    * The color of the dark area in RGBA format.
+   *
+   * @default "rgba(0,0,0,0.9)";
    */
   public color = "rgba(0,0,0,0.9)";
 

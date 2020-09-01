@@ -11,11 +11,15 @@ export type LightingOptions = Partial<Pick<Lighting, "light" | "objects">>;
 export default class Lighting {
   /**
    * The source of the lighting.
+   *
+   * @default new Light();
    */
   public light = new Light();
 
   /**
    * An array of {@linkcode OpaqueObject} objects which stop the light and create shadows.
+   *
+   * @default [];
    */
   public objects: OpaqueObject[] = [];
 

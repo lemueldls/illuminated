@@ -11,11 +11,15 @@ export type RectangleObjectOptions = Partial<Pick<RectangleObject, "topleft" | "
 export default class RectangleObject extends PolygonObject {
   /**
     A vector that is the top-left of the rectangle.
+   *
+   * @default new Vec2();
     */
   public topleft = new Vec2();
 
   /**
    A vector that is the bottom-right of the rectangle.
+   *
+   * @default new Vec2();
    */
   public bottomright = new Vec2();
 

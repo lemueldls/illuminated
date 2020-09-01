@@ -12,6 +12,8 @@ export default class OpaqueObject {
 
   /**
    * How diffuse this opaque object should be.
+   *
+   * @default 0.8;
    */
   public diffuse = 0.8;
 

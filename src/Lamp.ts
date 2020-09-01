@@ -25,32 +25,44 @@ export default class Lamp extends Light {
 
   /**
    * The id of this light object.
+   *
+   * @default 0;
    */
   public id = 0;
 
   /**
    * The color emitted by the lamp. The color can be specified in any CSS format.
+   *
+   * @default "rgba(250,220,150,0.8)";
    */
   public color = "rgba(250,220,150,0.8)";
 
   /**
    * The size of the lamp. Bigger lamps cast smoother shadows.
+   *
+   * @default 0;
    */
   public radius = 0;
 
   /**
    * The number of points which will be used for shadow projection. It defines
    * the quality of the rendering.
+   *
+   * @default 1;
    */
   public samples = 1;
 
   /**
    * The angle of the orientation of the lamp.
+   *
+   * @default 0;
    */
   public angle = 0;
 
   /**
    * The roughness of the oriented effect.
+   *
+   * @default 0;
    */
   public roughness = 0;
 

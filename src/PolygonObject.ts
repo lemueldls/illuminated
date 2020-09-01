@@ -12,6 +12,8 @@ export type PolygonObjectOptions = Partial<Pick<PolygonObject, "points">> & Opaq
 export default class PolygonObject extends OpaqueObject {
   /**
    * An array of {@linkcode Vec} points that define the polygon.
+   *
+   * @default [];
    */
   public points: Vec2[] = [];
 

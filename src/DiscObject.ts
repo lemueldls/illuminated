@@ -14,11 +14,15 @@ export type DiscObjectOptions = Partial<Pick<DiscObject, "center" | "radius">> &
 export default class DiscObject extends OpaqueObject {
   /**
    *  Position of the disc object.
+   *
+   * @default new Vec2();
    */
   public center = new Vec2();
 
   /**
    * Size of the disc object.
+   *
+   * @default 20;
    */
   public radius = 20;
 
