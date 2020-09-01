@@ -1,7 +1,7 @@
 {
   "name": "illuminated",
   "version": "1.0.0",
-  "description": "A backwards-compatible TypeScript rewrite of the Illuminated.js library written by Gaëtan Renaudeau.",
+  "description": "A modern TypeScript rewrite of the Illuminated.js library originally written by Gaëtan Renaudeau.",
   "main": "./dist/illuminated.js",
   "module": "./dist/illuminated.esm.js",
   "types": "./dist/illuminated.d.ts",
@@ -45,5 +45,8 @@
   "keywords": [
     "illuminated",
     "typescript"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
