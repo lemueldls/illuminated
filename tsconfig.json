@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "removeComments": false,
+    "module": "esnext",
+    "target": "esnext",
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "outDir": "./dist",
+    "sourceRoot": "./src",
+    "sourceMap": true,
+    // "declaration": true,
+    // "declarationMap": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node"
+  },
+  "files": ["./src/index.ts"],
+  "exclude": ["node_modules/"]
+}
