@@ -33,7 +33,7 @@ export default class Lighting {
    * @param options.objects - An array of {@linkcode OpaqueObject}
    * objects which stop the light and create shadows.
    */
-  public constructor(options?: LightingOptions) {
+  public constructor(options: LightingOptions = {}) {
     const { light, objects } = options as LightingOptions;
 
     this.light = light ?? this.light;

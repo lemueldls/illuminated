@@ -22,7 +22,7 @@ export default class PolygonObject extends OpaqueObject {
    * @param options.points - An array of {@linkcode Vec2} points that define the polygon.
    * @param options.diffuse - How diffuse this polygon object should be.
    */
-  public constructor(options?: PolygonObjectOptions) {
+  public constructor(options: PolygonObjectOptions = {}) {
     super(options as PolygonObjectOptions);
 
     const { points } = options as PolygonObjectOptions;

@@ -1,9 +1,7 @@
-import { createCanvasAnd2dContext } from "utils";
-
 import { Bounds } from "./types";
 import { GOLDEN_ANGLE } from "./constants";
 import Light, { LightOptions } from "./Light";
-import { CanvasAndContext, getRGBA } from "./utils";
+import { createCanvasAnd2dContext, CanvasAndContext, getRGBA } from "./utils";
 import Vec2 from "./Vec2";
 
 export type LampOptions = Partial<
@@ -93,7 +91,7 @@ export default class Lamp extends Light {
    * @param options.angle - The angle of the orientation of the lamp.
    * @param options.roughness - The roughness of the oriented effect.
    */
-  public constructor(options?: LampOptions) {
+  public constructor(options: LampOptions = {}) {
     super(options);
 
     const { color, radius, samples, angle, roughness } = options as LampOptions;

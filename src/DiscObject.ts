@@ -32,7 +32,7 @@ export default class DiscObject extends OpaqueObject {
    * @param options.radius - Size of the disc object.
    * @param options.diffuse - How diffuse this disc object should be.
    */
-  public constructor(options?: DiscObjectOptions) {
+  public constructor(options: DiscObjectOptions = {}) {
     super(options as DiscObjectOptions);
 
     const { center, radius } = options as DiscObjectOptions;

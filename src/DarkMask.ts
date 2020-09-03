@@ -30,7 +30,7 @@ export default class DarkMask {
    * illuminate the rest of the scene.
    * @param options.color - The color of the dark area in RGBA format.
    */
-  public constructor(options?: DarkMaskOptions) {
+  public constructor(options: DarkMaskOptions = {}) {
     const { lights, color } = options as DarkMaskOptions;
 
     this.lights = lights ?? this.lights;

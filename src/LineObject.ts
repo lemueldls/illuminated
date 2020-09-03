@@ -27,7 +27,7 @@ export default class LineObject extends PolygonObject {
    * @param options.a - A vector that is the first point of the line.
    * @param options.b - A vector that is the last point of the line.
    */
-  public constructor(options?: LineObjectOptions) {
+  public constructor(options: LineObjectOptions = {}) {
     super(options);
 
     const { a, b } = options as LineObjectOptions;

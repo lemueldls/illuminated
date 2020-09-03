@@ -28,7 +28,7 @@ export default class RectangleObject extends PolygonObject {
    * @param options.topleft - A vector that is the top-left of the rectangle.
    * @param options.bottomright - A vector that is the bottom-right of the rectangle.
    */
-  public constructor(options?: RectangleObjectOptions) {
+  public constructor(options: RectangleObjectOptions = {}) {
     super(options);
 
     const { topleft, bottomright } = options as RectangleObjectOptions;

@@ -44,7 +44,7 @@ export default class Light {
    * @param options.distance - Intensity of this light.
    * @param options.diffuse - How diffuse this light is.
    */
-  public constructor(options?: LightOptions) {
+  public constructor(options: LightOptions = {}) {
     const { position, distance, diffuse } = options as LightOptions;
 
     this.position = position ?? this.position;
