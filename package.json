@@ -1,19 +1,25 @@
 {
   "name": "illuminated",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "private": false,
+  "author": "Lemuel De Los Santos",
   "description": "A modern TypeScript rewrite of the Illuminated.js library originally written by Gaëtan Renaudeau.",
   "main": "./dist/illuminated.js",
   "types": "./dist/illuminated.d.ts",
   "files": [
     "dist"
   ],
-  "author": "Lemuel De Los Santos",
   "license": "LGPL-2.1",
-  "private": false,
   "homepage": "https://github.com/lemueldls/illuminated#readme",
   "repository": "git+ssh://git@github.com/lemueldls/illuminated.git",
   "bugs": {
     "url": "https://github.com/lemueldls/illuminated/issues"
+  },
+  "scripts": {
+    "test": "",
+    "docs": "typedoc",
+    "build": "rollup -c rollup.config.ts",
+    "lint": "eslint \"src/**/*.ts\""
   },
   "dependencies": {},
   "devDependencies": {
@@ -34,12 +40,6 @@
     "tslib": "^2.0.1",
     "typedoc": "^0.19.0",
     "typescript": "^4.0.2"
-  },
-  "scripts": {
-    "test": "",
-    "docs": "typedoc",
-    "build": "rollup -c rollup.config.ts",
-    "lint": "eslint \"**/*.ts\""
   },
   "keywords": [
     "illuminated",
