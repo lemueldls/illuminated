@@ -1,7 +1,7 @@
 # Illuminated
 
-A modern TypeScript rewrite of the Illuminated.js library originally written by
-[Gaëtan Renaudeau](https://github.com/gre).
+A modern TypeScript rewrite of the Illuminated.js &ndash; 2D lights and shadows rendering engine for
+HTML5 applications library originally written by [Gaëtan Renaudeau](https://github.com/gre).
 
 ## Installation
 
