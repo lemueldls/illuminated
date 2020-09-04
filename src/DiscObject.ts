@@ -1,7 +1,7 @@
-import { Bounds } from "./types";
+import { Bounds, getTan2, path } from "./utils";
 import { _2PI } from "./constants";
 import OpaqueObject, { OpaqueObjectOptions } from "./OpaqueObject";
-import { getTan2, path } from "./utils";
+
 import Vec2 from "./Vec2";
 
 // eslint-disable-next-line no-use-before-define
@@ -10,27 +10,32 @@ export type DiscObjectOptions = Partial<Pick<DiscObject, "center" | "radius">> &
 
 /**
  *  A circular, opaque object.
+ *
+ * @class DiscObject
  */
 export default class DiscObject extends OpaqueObject {
   /**
    *  Position of the disc object.
    *
-   * @default new Vec2();
+   * @type {Vec2}
+   * @default new Vec2()
    */
-  public center = new Vec2();
+  public center: Vec2 = new Vec2();
 
   /**
    * Size of the disc object.
    *
-   * @default 20;
+   * @type {number}
+   * @default 20
    */
   public radius = 20;
 
   /**
-   * @param options - Options to be applied to this disc object.
-   * @param options.center - Position of the disc object.
-   * @param options.radius - Size of the disc object.
-   * @param options.diffuse - How diffuse this disc object should be.
+   * @constructor
+   * @param {DiscObjectOptions} [options] - Options to be applied to this disc object.
+   * @param {Vec2} [options.center] - Position of the disc object.
+   * @param {number} [options.radius] - Size of the disc object.
+   * @param {number} [options.diffuse] - How diffuse this disc object should be.
    */
   public constructor(options: DiscObjectOptions = {}) {
     super(options as DiscObjectOptions);
@@ -45,9 +50,9 @@ export default class DiscObject extends OpaqueObject {
    * Fill ctx with the shadows projected by this disc object from the origin
    * point, constrained by the given bounds.
    *
-   * @param ctx - The canvas context onto which the shadows will be cast.
-   * @param origin - A vector that represents the origin for the casted shadows.
-   * @param bounds - An anonymous object with the properties topleft and bottomright.
+   * @param {CanvasRenderingContext2D} ctx - The canvas context onto which the shadows will be cast.
+   * @param {Vec2} origin - A vector that represents the origin for the casted shadows.
+   * @param {Bounds} bounds - An anonymous object with the properties topleft and bottomright.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public cast(ctx: CanvasRenderingContext2D, origin: Vec2, bounds: Bounds): void {
@@ -92,7 +97,7 @@ export default class DiscObject extends OpaqueObject {
   /**
    * Draw the path of the disc onto the ctx.
    *
-   * @param ctx - The context onto which the path will be drawn.
+   * @param {CanvasRenderingContext2D} ctx - The context onto which the path will be drawn.
    */
   public path(ctx: CanvasRenderingContext2D): void {
     ctx.arc(this.center.x, this.center.y, this.radius, 0, _2PI);
@@ -101,7 +106,7 @@ export default class DiscObject extends OpaqueObject {
   /**
    * Calculate the boundaries of this disc object.
    *
-   * @returns An anonymous object with the properties topleft and bottomright.
+   * @return {Bounds} An anonymous object with the properties topleft and bottomright.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public bounds(): Bounds {
@@ -114,8 +119,8 @@ export default class DiscObject extends OpaqueObject {
   /**
    * Determine if the given point is inside the disc.
    *
-   * @param point - The point to be checked.
-   * @returns True if the disc object contains the given point.
+   * @param {Vec2} point - The point to be checked.
+   * @return {boolean} True if the disc object contains the given point.
    */
   public contains(point: Vec2): boolean {
     return point.dist2(this.center) < this.radius * this.radius;

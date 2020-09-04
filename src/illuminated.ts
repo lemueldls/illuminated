@@ -13,10 +13,8 @@ export * from "./constants";
 export * from "./utils";
 
 /**
- * Illuminated.js - A 2D lights and shadows rendering engine for HTML5 applications and games.
+ * Illuminated - A 2D lights and shadows rendering engine for HTML5 applications and games.
  * @packageDocumentation
- *
- * @module illuminated
  */
 export {
   DarkMask,

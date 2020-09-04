@@ -6,26 +6,31 @@ export type LineObjectOptions = Partial<Pick<LineObject, "a" | "b">> & PolygonOb
 
 /**
  * An opaque line object
+ *
+ * @class LineObject
  */
 export default class LineObject extends PolygonObject {
   /**
    * A vector that is the first point of the line.
    *
-   * @default new Vec2();
+   * @type {Vec2}
+   * @default new Vec2()
    */
-  public a = new Vec2();
+  public a: Vec2 = new Vec2();
 
   /**
    * A vector that is the last point of the line.
    *
-   * @default new Vec2();
+   * @type {Vec2}
+   * @default new Vec2()
    */
-  public b = new Vec2();
+  public b: Vec2 = new Vec2();
 
   /**
-   * @param options - Options to be applied to this line object.
-   * @param options.a - A vector that is the first point of the line.
-   * @param options.b - A vector that is the last point of the line.
+   * @constructor
+   * @param {LineObjectOptions} options - Options to be applied to this line object.
+   * @param {Vec2} options.a - A vector that is the first point of the line.
+   * @param {Vec2} options.b - A vector that is the last point of the line.
    */
   public constructor(options: LineObjectOptions = {}) {
     super(options);

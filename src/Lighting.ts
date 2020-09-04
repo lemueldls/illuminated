@@ -7,30 +7,37 @@ export type LightingOptions = Partial<Pick<Lighting, "light" | "objects">>;
 
 /**
  * Defines the lighting of one light through a set of opaque objects.
+ *
+ * @class Lighting
  */
 export default class Lighting {
   /**
    * The source of the lighting.
    *
-   * @default new Light();
+   * @type {Light}
+   * @default new Light()
    */
-  public light = new Light();
+  public light: Light = new Light();
 
   /**
    * An array of {@linkcode OpaqueObject} objects which stop the light and create shadows.
    *
-   * @default [];
+   * @type {OpaqueObject[]}
+   * @default []
    */
   public objects: OpaqueObject[] = [];
 
+  /** @type {CanvasAndContext} */
   #cache!: CanvasAndContext;
 
+  /** @type {CanvasAndContext} */
   #castcache!: CanvasAndContext;
 
   /**
-   * @param options - Options to be applied to this light.
-   * @param options.light - The source of the lighting.
-   * @param options.objects - An array of {@linkcode OpaqueObject}
+   * @constructor
+   * @param {LightingOptions} [options] - Options to be applied to this light.
+   * @param {Light} [options.light] - The source of the lighting.
+   * @param {OpaqueObject[]} [options.objects] - An array of {@linkcode OpaqueObject}
    * objects which stop the light and create shadows.
    */
   public constructor(options: LightingOptions = {}) {
@@ -43,8 +50,8 @@ export default class Lighting {
   /**
    * Create caches for canvas contexts.
    *
-   * @param w - Width of the contexts.
-   * @param h - Height of the contexts.
+   * @param {number} w - Width of the contexts.
+   * @param {number} h - Height of the contexts.
    */
   private createCache(w: number, h: number): void {
     this.#cache = createCanvasAnd2dContext("lc", w, h);
@@ -55,7 +62,7 @@ export default class Lighting {
    * Draw the shadows that are cast by the objects. You usually don't have to use
    * it if you use render().
    *
-   * @param ctxoutput - The canvas context onto which the shadows will be drawn.
+   * @param {CanvasRenderingContext2D} ctxoutput - The canvas context onto which the shadows will be drawn.
    */
   cast(ctxoutput: CanvasRenderingContext2D): void {
     const { light } = this;
@@ -107,8 +114,8 @@ export default class Lighting {
   /**
    * Compute the shadows to cast.
    *
-   * @param w - Width of the canvas context.
-   * @param h - Height of the canvas context.
+   * @param {number} w - Width of the canvas context.
+   * @param {number} h - Height of the canvas context.
    */
   public compute(w: number, h: number): void {
     if (!this.#cache || this.#cache.w !== w || this.#cache.h !== h) this.createCache(w, h);
@@ -126,7 +133,7 @@ export default class Lighting {
   /**
    * Draws the light and shadows onto the given context.
    *
-   * @param ctx - The canvas context on which to draw.
+   * @param {CanvasRenderingContext2D} ctx - The canvas context on which to draw.
    */
   public render(ctx: CanvasRenderingContext2D): void {
     ctx.drawImage(this.#cache.canvas, 0, 0);
@@ -135,7 +142,7 @@ export default class Lighting {
   /**
    * Returns the light and shadows onto the given context as canvas.
    *
-   * @returns The picture of the light and shadow.
+   * @return {HTMLCanvasElement} The picture of the light and shadow.
    */
   public getCanvas(): HTMLCanvasElement {
     return this.#cache.canvas;

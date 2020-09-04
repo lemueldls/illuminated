@@ -7,23 +7,26 @@ export type RectangleObjectOptions = Partial<Pick<RectangleObject, "topleft" | "
 
 /**
  * A rectangular, opaque object.
+ *
+ * @class RectangleObject
  */
 export default class RectangleObject extends PolygonObject {
   /**
     A vector that is the top-left of the rectangle.
    *
-   * @default new Vec2();
+   * @default new Vec2()
     */
   public topleft = new Vec2();
 
   /**
    A vector that is the bottom-right of the rectangle.
    *
-   * @default new Vec2();
+   * @default new Vec2()
    */
   public bottomright = new Vec2();
 
   /**
+   * @constructor
    * @param options - Options to be applied to this rectangle object.
    * @param options.topleft - A vector that is the top-left of the rectangle.
    * @param options.bottomright - A vector that is the bottom-right of the rectangle.

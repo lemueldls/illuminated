@@ -1,6 +1,6 @@
 {
   "name": "illuminated",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": false,
   "author": "Lemuel De Los Santos",
   "description": "A modern TypeScript rewrite of the Illuminated.js library originally written by Gaëtan Renaudeau.",
@@ -23,6 +23,11 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/runtime": "^7.11.2",
+    "@rollup/plugin-babel": "^5.2.0",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
     "eslint": "^7.8.0",

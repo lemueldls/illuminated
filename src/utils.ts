@@ -1,21 +1,30 @@
 import Vec2 from "./Vec2";
 
+/**
+ * Boundaries with the properties `topleft` and `bottomright`.
+ * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
+ */
+export interface Bounds {
+  topleft: Vec2;
+  bottomright: Vec2;
+}
+
 export interface CanvasAndContext {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   w: number;
   h: number;
 }
+
 /**
  * Creates a canvas and context with the given width and height.
  *
- * @param width - Width of the canvas context.
- * @param height - Height of the canvas context.
- * @returns An anonymous object with
- * {@linkcode CanvasAndContext.canvas | canvas},
- * {@linkcode CanvasAndContext.ctx | ctx},
- * {@linkcode CanvasAndContext.w | w} and
- * {@linkcode CanvasAndContext.h | h} properties.
+ * @param {string} id - ID name of the canvas context.
+ * @param {number} width - Width of the canvas context.
+ * @param {number} height - Height of the canvas context.
+ * @return {CanvasAndContext} An anonymous object with {@linkcode CanvasAndContext.canvas canvas},
+ * {@linkcode CanvasAndContext.ctx ctx}, {@linkcode CanvasAndContext.w w} and
+ * {@linkcode CanvasAndContext.h h} properties.
  */
 export function createCanvasAnd2dContext(
   id: string,
@@ -46,9 +55,9 @@ export function createCanvasAnd2dContext(
 /**
  * Draw a path defined by the given points onto the given ctx.
  *
- * @param ctx - The context onto which the properties should be drawn.
- * @param points - An array of {@linkcode Vec2} objects that define the path.
- * @param dontJoinLast - True if the last point should joined with the
+ * @param {CanvasRenderingContext2D} ctx - The context onto which the properties should be drawn.
+ * @param {Vec2[]} points - An array of {@linkcode Vec2} objects that define the path.
+ * @param {boolean} [dontJoinLast] - True if the last point should joined with the
  * first point in the path.
  */
 export function path(ctx: CanvasRenderingContext2D, points: Vec2[], dontJoinLast?: boolean): void {
@@ -69,9 +78,9 @@ export function path(ctx: CanvasRenderingContext2D, points: Vec2[], dontJoinLast
 /**
  * Converts a CSS color string into RGBA format.
  *
- * @param color - Color in any CSS format.
- * @param alpha - Alpha value for produced color.
- * @returns Color in RGBA format.
+ * @param {string} color - Color in any CSS format.
+ * @param {number} alpha - Alpha value for produced color.
+ * @return {string} Color in RGBA format.
  */
 export const getRGBA = (() => {
   // var ctx = createCanvasAnd2dContext("grgba", 1, 1);
@@ -91,16 +100,20 @@ export const getRGBA = (() => {
 })();
 
 /**
- * Converts a CSS color string into an anonymous object with color and alpha
- * properties.
+ * Converts a CSS color string into an anonymous object with color and alpha properties.
  *
- * @param color - Color in any CSS format.
- * @returns An anonymous object with the properties color and alpha.
- * The color property is a string in hex format and the alpha property is a
- * number from 0.0 to 1.0, rounded to 3 decimal places.
+ * @param {string} color - Color in any CSS format.
+ * @return {{color: string, alpha: number}} An anonymous object with the
+ * properties color and alpha. The color property is a string in hex format and
+ * the alpha property is a number from 0.0 to 1.0, rounded to 3 decimal places.
  */
-export const extractColorAndAlpha = (() => {
-  // var ctx = createCanvasAnd2dContext('grgba', 1, 1);
+export const extractColorAndAlpha: (
+  color: string
+) => {
+  color: string;
+  alpha: number;
+} = (() => {
+  // const ctx = createCanvasAnd2dContext("grgba", 1, 1);
   const canvas = document.createElement("canvas");
   canvas.width = 1;
   canvas.height = 1;
@@ -126,10 +139,14 @@ export const extractColorAndAlpha = (() => {
 })();
 
 /**
- * Get tangents from (0,0) to circle of radius with given center, for
- * {@linkcode DiscObject.prototype.cast}.
+ * Get tangents from (0, 0) to circle of radius with given center, for {@linkcode DiscObject.cast}.
+ *
+ * @param {number} radius
+ * @param {Vec2} center
+ * @param {number} pointY
+ * @return {Vec2[]}
  */
-export function getTan2(radius: number, center: Vec2, y?: number): Vec2[] {
+export function getTan2(radius: number, center: Vec2, pointY?: number): Vec2[] {
   let point = center;
   const epsilon = 1e-6; // getTan2.epsilon
   let x0;
@@ -146,7 +163,7 @@ export function getTan2(radius: number, center: Vec2, y?: number): Vec2[] {
   if (typeof point === "number") {
     // getTan2(radius:number, x0:number, y0:number)
     x0 = point;
-    y0 = y || 0;
+    y0 = pointY || 0;
     len2 = x0 * x0 + y0 * y0;
   } else {
     // getTans2(radius:number, center:object={x:x0,y:y0})

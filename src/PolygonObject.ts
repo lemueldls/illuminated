@@ -1,6 +1,6 @@
-import { Bounds } from "./types";
+import { Bounds, path } from "./utils";
 import OpaqueObject, { OpaqueObjectOptions } from "./OpaqueObject";
-import { path } from "./utils";
+
 import Vec2 from "./Vec2";
 
 // eslint-disable-next-line no-use-before-define
@@ -8,19 +8,23 @@ export type PolygonObjectOptions = Partial<Pick<PolygonObject, "points">> & Opaq
 
 /**
  * An opaque polygon object
+ *
+ * @class PolygonObject
  */
 export default class PolygonObject extends OpaqueObject {
   /**
    * An array of {@linkcode Vec} points that define the polygon.
    *
-   * @default [];
+   * @type {Vec2[]}
+   * @default []
    */
   public points: Vec2[] = [];
 
   /**
-   * @param options - Options to be applied to this disc object.
-   * @param options.points - An array of {@linkcode Vec2} points that define the polygon.
-   * @param options.diffuse - How diffuse this polygon object should be.
+   * @constructor
+   * @param {PolygonObjectOptions} [options] - Options to be applied to this disc object.
+   * @param {Vec2} [options.points] - An array of {@linkcode Vec2} points that define the polygon.
+   * @param {number} [options.diffuse] - How diffuse this polygon object should be.
    */
   public constructor(options: PolygonObjectOptions = {}) {
     super(options as PolygonObjectOptions);
@@ -33,7 +37,7 @@ export default class PolygonObject extends OpaqueObject {
   /**
    * Calculate the boundaries of this polygon object.
    *
-   * @returns An anonymous object with the properties topleft and bottomright.
+   * @return {Bounds} An anonymous object with the properties topleft and bottomright.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public bounds(): Bounds {
@@ -53,10 +57,9 @@ export default class PolygonObject extends OpaqueObject {
   /**
    * Determine if the given point is inside the polygon.
    *
-   * @param point - The point to be checked.
-   * @returns True if the polygon object contains the given point.
+   * @param {Vec2} point - The point to be checked.
+   * @return {boolean} True if the polygon object contains the given point.
    */
-
   public contains(point: Vec2): boolean {
     const { points } = this;
     const l = points.length;
@@ -86,7 +89,7 @@ export default class PolygonObject extends OpaqueObject {
   /**
    * Draw the path of the polygon onto the ctx.
    *
-   * @param ctx - The context onto which the path will be drawn.
+   * @param {CanvasRenderingContext2D} ctx - The context onto which the path will be drawn.
    */
   public path(ctx: CanvasRenderingContext2D): void {
     path(ctx, this.points);
@@ -96,13 +99,14 @@ export default class PolygonObject extends OpaqueObject {
    * Fill ctx with the shadows projected by this polygon object from the origin point,
    * constrained by the given bounds.
    *
-   * @param ctx - The canvas context onto which the shadows will be cast.
-   * @param origin - A vector that represents the origin for the casted shadows.
-   * @param bounds - An anonymous object with the properties topleft and bottomright. The property values are
-   * {@linkcode Vec2} objects representing the corners of the boundary.
+   * @param {CanvasRenderingContext2D} ctx - The canvas context onto which the shadows will be cast.
+   * @param {Vec2} origin - A vector that represents the origin for the casted shadows.
+   * @param {Bounds} bounds - An anonymous object with the properties topleft and bottomright.
+   * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public cast(ctx: CanvasRenderingContext2D, origin: Vec2, bounds: Bounds): void {
     // The current implementation of projection is a bit hacky... do you have a proper solution?
+
     const distance =
       (bounds.bottomright.x - bounds.topleft.x + (bounds.bottomright.y - bounds.topleft.y)) / 2;
 
@@ -129,13 +133,21 @@ export default class PolygonObject extends OpaqueObject {
   }
 
   /**
+   * @callback edgeCallback
+   * @param {Vec2} a
+   * @param {Vec2} b
+   * @param {Vec2} originToA
+   * @param {Vec2} originToB
+   * @param {Vec2} aToB
+   */
+  /**
    * Invoke a function for each of the visible edges in this polygon.
    *
-   * @param origin - A vector that represents the origin for the casted shadows.
-   * @param bounds - An anonymous object with the properties topleft and bottomright.
-   * The property values are {@linkcode Vec2} objects representing the corners
-   * of the boundary of this polygon.
-   * @param f - The function to be invoked.
+   * @param {Vec2} origin - A vector that represents the origin for the casted shadows.
+   * @param {Bounds} bounds - An anonymous object with the properties topleft and
+   * bottomright. The property values are {@linkcode Vec2} objects representing
+   * the corners of the boundary of this polygon.
+   * @param {edgeCallback} f - The function to be invoked.
    */
   private forEachVisibleEdges(
     origin: Vec2,

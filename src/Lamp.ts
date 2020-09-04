@@ -1,7 +1,7 @@
-import { Bounds } from "./types";
+import { Bounds, createCanvasAnd2dContext, CanvasAndContext, getRGBA } from "./utils";
 import { GOLDEN_ANGLE } from "./constants";
 import Light, { LightOptions } from "./Light";
-import { createCanvasAnd2dContext, CanvasAndContext, getRGBA } from "./utils";
+
 import Vec2 from "./Vec2";
 
 export type LampOptions = Partial<
@@ -13,58 +13,71 @@ export type LampOptions = Partial<
 /**
  * A circular light rendered as a radial gradient.
  * Lamps can also be "oriented" in a specific direction.
+ *
+ * @class Lamp
  */
 export default class Lamp extends Light {
-  #uniqueId = 0;
-
-  #cacheHashcode!: string;
-
-  #gcache!: CanvasAndContext;
-
   /**
    * The id of this light object.
    *
-   * @default 0;
+   * @type {number}
+   * @default 0
    */
   public id = 0;
 
   /**
    * The color emitted by the lamp. The color can be specified in any CSS format.
    *
-   * @default "rgba(250,220,150,0.8)";
+   * @type {string}
+   * @default "rgba(250,220,150,0.8)"
    */
   public color = "rgba(250,220,150,0.8)";
 
   /**
    * The size of the lamp. Bigger lamps cast smoother shadows.
    *
-   * @default 0;
+   * @type {number}
+   * @default 0
    */
   public radius = 0;
 
   /**
-   * The number of points which will be used for shadow projection. It defines
-   * the quality of the rendering.
+   * The number of points which will be used for shadow projection.
+   * It defines the quality of the rendering.
    *
-   * @default 1;
+   * @type {number}
+   * @default 1
    */
   public samples = 1;
 
   /**
    * The angle of the orientation of the lamp.
    *
-   * @default 0;
+   * @type {number}
+   * @default 0
    */
   public angle = 0;
 
   /**
    * The roughness of the oriented effect.
    *
-   * @default 0;
+   * @type {number}
+   * @default 0
    */
   public roughness = 0;
 
+  /** @type {number} */
+  #uniqueId = 0;
+
+  /** @type {string} */
+  #cacheHashcode!: string;
+
+  /** @type {CanvasAndContext} */
+  #gcache!: CanvasAndContext;
+
   /**
+   * @constructor
+   *
    * @example
    * ```typescript
    * new Lamp({
@@ -79,17 +92,17 @@ export default class Lamp extends Light {
    * })
    * ```
    *
-   * @param options - Options to be applied to this lamp.
-   * @param options.position - Position of this lamp. (0,0) by default.
-   * @param options.distance - Intensity of this lamp.
-   * @param options.diffuse - How diffuse this lamp is.
-   * @param options.color - The color emitted by the lamp.
+   * @param {LampOptions} [options] - Options to be applied to this lamp.
+   * @param {Vec2} [options.position] - Position of this lamp. (0, 0) by default.
+   * @param {number} [options.distance] - Intensity of this lamp.
+   * @param {number} [options.diffuse] - How diffuse this lamp is.
+   * @param {string} [options.color] - The color emitted by the lamp.
    * The color can be specified in any CSS format.
-   * @param options.radius - The size of the lamp. Bigger lamps cast smoother shadows.
-   * @param options.samples - The number of points which will be used for shadow projection.
+   * @param {number} [options.radius] - The size of the lamp. Bigger lamps cast smoother shadows.
+   * @param {number} [options.samples] - The number of points which will be used for shadow projection.
    * It defines the quality of the rendering.
-   * @param options.angle - The angle of the orientation of the lamp.
-   * @param options.roughness - The roughness of the oriented effect.
+   * @param {number} [options.angle] - The angle of the orientation of the lamp.
+   * @param {number} [options.roughness] - The roughness of the oriented effect.
    */
   public constructor(options: LampOptions = {}) {
     super(options);
@@ -108,7 +121,7 @@ export default class Lamp extends Light {
   /**
    * Return a string hash key representing this lamp.
    *
-   * @returns The hash key.
+   * @return {string} The hash key.
    */
   protected getHashCache(): string {
     return [
@@ -126,7 +139,7 @@ export default class Lamp extends Light {
    * Return the center of this lamp.
    * i.e. The position where the lamp intensity is the highest
    *
-   * @returns A new vector that represents the center of this lamp.
+   * @return {Vec2} A new vector that represents the center of this lamp.
    */
   public center(): Vec2 {
     return new Vec2(
@@ -138,7 +151,7 @@ export default class Lamp extends Light {
   /**
    * Calculate the boundaries of this lamp based on its properties.
    *
-   * @returns An anonymous object with the properties topleft and bottomright.
+   * @return {Bounds} An anonymous object with the properties topleft and bottomright.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public bounds(): Bounds {
@@ -161,7 +174,7 @@ export default class Lamp extends Light {
   /**
    * Render a mask representing the visibility. (Used by {@linkcode DarkMask}.)
    *
-   * @param ctx - The canvas context onto which the mask will be rendered.
+   * @param {CanvasRenderingContext2D} ctx - The canvas context onto which the mask will be rendered.
    */
   public mask(ctx: CanvasRenderingContext2D): void {
     const c = this.getVisibleMaskCache();
@@ -179,9 +192,10 @@ export default class Lamp extends Light {
   /**
    * Renders this lamp's gradient onto a cached canvas at the given position.
    *
-   * @param center - The position of the center of the gradient to render.
+   * @param {Vec2} center - The position of the center of the gradient to render.
+   * @return {CanvasAndContext}
    */
-  private getGradientCache(center: Vec2) {
+  private getGradientCache(center: Vec2): CanvasAndContext {
     const hashcode = this.getHashCache();
 
     if (this.#cacheHashcode === hashcode) {
@@ -206,7 +220,7 @@ export default class Lamp extends Light {
   /**
    * Render the lamp onto the given context (without any shadows).
    *
-   * @param ctx - The canvas context onto which the light will be rendered.
+   * @param {CanvasRenderingContext2D} ctx - The canvas context onto which the light will be rendered.
    */
   public render(ctx: CanvasRenderingContext2D): void {
     const center = this.center();
@@ -220,10 +234,14 @@ export default class Lamp extends Light {
   }
 
   /**
+   * @callback sampleCallback
+   * @param {Vec2} v
+   */
+  /**
    * Invoke a function for every sample generated by this lamp.
    * The samples for lamps are generated using a "spiral" algorithm.
    *
-   * @param f - Function to be called for every sample.
+   * @param {sampleCallback} f - Function to be called for every sample.
    * The function will be passed a vector representing the position of the sample.
    */
   public forEachSample(f: (v: Vec2) => void): void {
