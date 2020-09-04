@@ -3,26 +3,20 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
-    "removeComments": false,
     "module": "esnext",
-    "target": "es6",
-    "rootDir": "./src",
-    "baseUrl": "./",
+    "target": "es2020",
     "outDir": "./dist",
-    // "sourceRoot": "./src",
     "sourceMap": true,
     "declaration": true,
-    "declarationMap": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node"
   },
   "typedocOptions": {
     "mode": "modules",
     "out": "docs",
     "name": "Illuminated",
-    "hideGenerator": true
+    "hideGenerator": true,
+    "theme": "default"
   },
-  "files": ["./src/illuminated.ts", "./src/types.d.ts"],
+  "files": ["./src/illuminated.ts"],
   "exclude": ["node_modules/"]
 }

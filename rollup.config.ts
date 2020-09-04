@@ -1,10 +1,11 @@
 import typescript from "rollup-plugin-typescript2";
 import { terser } from "rollup-plugin-terser";
+// import babel from "@rollup/plugin-babel";
 
 export default {
-  input: "./src/illuminated.ts",
+  input: "src/illuminated.ts",
   output: {
-    file: "dist/illuminated.js",
+    dir: "dist",
     format: "umd",
     name: "Illuminated",
     sourcemap: true
@@ -16,5 +17,11 @@ export default {
         comments: false
       }
     })
+    // , babel({
+    //   babelHelpers: "runtime",
+    //   presets: ["@babel/preset-env"],
+    //   plugins: [["@babel/plugin-transform-runtime", { useESModules: true }]],
+    //   extensions: [".ts"]
+    // })
   ]
 };

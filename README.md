@@ -7,10 +7,10 @@ HTML5 applications library originally written by [Gaëtan Renaudeau](https://git
 
 ```console
 # Using NPM
-$ npm i illuminated
+npm i illuminated
 
 # Using Yarn
-$ yarn add illuminated
+yarn add illuminated
 ```
 
 ## Contributing
