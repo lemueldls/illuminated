@@ -119,6 +119,10 @@ export const extractColorAndAlpha: (
   canvas.height = 1;
   const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
+  /**
+   * @param {number} value
+   * @return {string}
+   */
   function toHex(value: number) {
     let s = value.toString(16);
     if (s.length === 1) s = `0${s}`;

@@ -12,24 +12,26 @@ export type RectangleObjectOptions = Partial<Pick<RectangleObject, "topleft" | "
  */
 export default class RectangleObject extends PolygonObject {
   /**
-    A vector that is the top-left of the rectangle.
+   * A vector that is the top-left of the rectangle.
    *
-   * @default new Vec2()
-    */
-  public topleft = new Vec2();
-
-  /**
-   A vector that is the bottom-right of the rectangle.
-   *
+   * @type {Vec2}
    * @default new Vec2()
    */
-  public bottomright = new Vec2();
+  public topleft: Vec2 = new Vec2();
+
+  /**
+   * A vector that is the bottom-right of the rectangle.
+   *
+   * @type {Vec2}
+   * @default new Vec2()
+   */
+  public bottomright: Vec2 = new Vec2();
 
   /**
    * @constructor
-   * @param options - Options to be applied to this rectangle object.
-   * @param options.topleft - A vector that is the top-left of the rectangle.
-   * @param options.bottomright - A vector that is the bottom-right of the rectangle.
+   * @param {RectangleObjectOptions} [options] - Options to be applied to this rectangle object.
+   * @param {Vec2} [options.topleft] - A vector that is the top-left of the rectangle.
+   * @param {Vec2} [options.bottomright] - A vector that is the bottom-right of the rectangle.
    */
   public constructor(options: RectangleObjectOptions = {}) {
     super(options);
@@ -55,7 +57,7 @@ export default class RectangleObject extends PolygonObject {
   /**
    * Draws this rectangle onto the given context
    *
-   * @param ctx - The canvas context onto which the rectangle should be drawn.
+   * @param {CanvasRenderingContext2D} ctx - The canvas context onto which the rectangle should be drawn.
    */
   public fill(ctx: CanvasRenderingContext2D): void {
     const { x, y } = this.points[0];
