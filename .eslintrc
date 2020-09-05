@@ -48,5 +48,5 @@
       "version": "999.999.999"
     }
   },
-  "ignorePatterns": ["node_modules/", "dist/", "**/*.min.*"]
+  "ignorePatterns": ["node_modules/", "dist/", "*.json"]
 }
