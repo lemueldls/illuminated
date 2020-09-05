@@ -1,8 +1,15 @@
 import { Bounds } from "./utils";
 import Vec2 from "./Vec2";
 
-// eslint-disable-next-line no-use-before-define
-export type OpaqueObjectOptions = Partial<Pick<OpaqueObject, "diffuse">>;
+/**
+ * Options to be applied to this opaque object.
+ *
+ * @typedef {Object} OpaqueObjectOptions
+ * @property {number} diffuse - How diffuse this opaque object should be.
+ */
+export type OpaqueObjectOptions =
+  // eslint-disable-next-line no-use-before-define
+  Partial<Pick<OpaqueObject, "diffuse">>;
 
 /**
  * Class for opaque objects.
@@ -23,10 +30,12 @@ export default class OpaqueObject {
 
   /**
    * @constructor
-   * @param {OpaqueObjectOptions} [options] - Options to be applied to this opaque object.
+   * @param {OpaqueObjectOptions} [options={}] - Options to be applied to this opaque object.
    * @param {number} [options.diffuse] - How diffuse this opaque object should be.
    */
-  public constructor({ diffuse }: OpaqueObjectOptions) {
+  public constructor(options: OpaqueObjectOptions = {}) {
+    const { diffuse } = options;
+
     this.diffuse = diffuse ?? this.diffuse;
   }
 

@@ -2,8 +2,17 @@ import Light from "./Light";
 import OpaqueObject from "./OpaqueObject";
 import { CanvasAndContext, createCanvasAnd2dContext } from "./utils";
 
-// eslint-disable-next-line no-use-before-define
-export type LightingOptions = Partial<Pick<Lighting, "light" | "objects">>;
+/**
+ * Options to be applied to this light.
+ *
+ * @typedef LightingOptions
+ * @property {Light} [light] - The source of the lighting.
+ * @property {OpaqueObject[]} [objects] - An array of [[`OpaqueObject`]]
+ * objects which stop the light and create shadows.
+ */
+export type LightingOptions =
+  // eslint-disable-next-line no-use-before-define
+  Partial<Pick<Lighting, "light" | "objects">>;
 
 /**
  * Defines the lighting of one light through a set of opaque objects.
@@ -35,13 +44,13 @@ export default class Lighting {
 
   /**
    * @constructor
-   * @param {LightingOptions} [options] - Options to be applied to this light.
+   * @param {LightingOptions} [options={}] - Options to be applied to this light.
    * @param {Light} [options.light] - The source of the lighting.
    * @param {OpaqueObject[]} [options.objects] - An array of {@linkcode OpaqueObject}
    * objects which stop the light and create shadows.
    */
   public constructor(options: LightingOptions = {}) {
-    const { light, objects } = options as LightingOptions;
+    const { light, objects } = options;
 
     this.light = light ?? this.light;
     this.objects = objects ?? this.objects;

@@ -3,13 +3,22 @@ import OpaqueObject, { OpaqueObjectOptions } from "./OpaqueObject";
 
 import Vec2 from "./Vec2";
 
-// eslint-disable-next-line no-use-before-define
-export type PolygonObjectOptions = Partial<Pick<PolygonObject, "points">> & OpaqueObjectOptions;
+/**
+ * Options to be applied to this disc object.
+ *
+ * @typedef PolygonObjectOptions
+ * @property {Vec2} [points] - An array of [[`Vec2`]] points that define the polygon.
+ * @property {number} [diffuse] - How diffuse this polygon object should be.
+ */
+export type PolygonObjectOptions =
+  // eslint-disable-next-line no-use-before-define
+  Partial<Pick<PolygonObject, "points"> & OpaqueObjectOptions>;
 
 /**
  * An opaque polygon object
  *
  * @class PolygonObject
+ * @extends OpaqueObject
  */
 export default class PolygonObject extends OpaqueObject {
   /**
@@ -22,14 +31,14 @@ export default class PolygonObject extends OpaqueObject {
 
   /**
    * @constructor
-   * @param {PolygonObjectOptions} [options] - Options to be applied to this disc object.
+   * @param {PolygonObjectOptions} [options={}] - Options to be applied to this disc object.
    * @param {Vec2} [options.points] - An array of {@linkcode Vec2} points that define the polygon.
    * @param {number} [options.diffuse] - How diffuse this polygon object should be.
    */
   public constructor(options: PolygonObjectOptions = {}) {
-    super(options as PolygonObjectOptions);
+    super(options);
 
-    const { points } = options as PolygonObjectOptions;
+    const { points } = options;
 
     this.points = points ?? this.points;
   }

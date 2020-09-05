@@ -4,18 +4,27 @@ import OpaqueObject, { OpaqueObjectOptions } from "./OpaqueObject";
 
 import Vec2 from "./Vec2";
 
-// eslint-disable-next-line no-use-before-define
-export type DiscObjectOptions = Partial<Pick<DiscObject, "center" | "radius">> &
-  OpaqueObjectOptions;
+/**
+ * Options to be applied to this disc object.
+ *
+ * @typedef {Object} DiscObjectOptions
+ * @property {Vec2} center - Position of the disc object.
+ * @property {number} radius - Size of the disc object.
+ * @property {number} diffuse - How diffuse this opaque object should be.
+ */
+export type DiscObjectOptions =
+  // eslint-disable-next-line no-use-before-define
+  Partial<Pick<DiscObject, "center" | "radius"> & OpaqueObjectOptions>;
 
 /**
- *  A circular, opaque object.
+ * A circular, opaque object.
  *
  * @class DiscObject
+ * @extends OpaqueObject
  */
 export default class DiscObject extends OpaqueObject {
   /**
-   *  Position of the disc object.
+   * Position of the disc object.
    *
    * @type {Vec2}
    * @default new Vec2()
@@ -32,15 +41,15 @@ export default class DiscObject extends OpaqueObject {
 
   /**
    * @constructor
-   * @param {DiscObjectOptions} [options] - Options to be applied to this disc object.
+   * @param {DiscObjectOptions} [options={}] - Options to be applied to this disc object.
    * @param {Vec2} [options.center] - Position of the disc object.
    * @param {number} [options.radius] - Size of the disc object.
    * @param {number} [options.diffuse] - How diffuse this disc object should be.
    */
   public constructor(options: DiscObjectOptions = {}) {
-    super(options as DiscObjectOptions);
+    super(options);
 
-    const { center, radius } = options as DiscObjectOptions;
+    const { center, radius } = options;
 
     this.center = center ?? this.center;
     this.radius = radius ?? this.radius;

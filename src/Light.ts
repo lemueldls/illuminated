@@ -2,8 +2,17 @@ import { Bounds, CanvasAndContext, createCanvasAnd2dContext } from "./utils";
 
 import Vec2 from "./Vec2";
 
-// eslint-disable-next-line no-use-before-define
-export type LightOptions = Partial<Pick<Light, "position" | "distance" | "diffuse">>;
+/**
+ * Options to be applied to this light.
+ *
+ * @typedef LightOptions
+ * @property {Vec2} [position] - Position of this light. (0, 0) by default.
+ * @property {number} [distance] - Intensity of this light.
+ * @property {number} [diffuse] - How diffuse this light is.
+ */
+export type LightOptions =
+  // eslint-disable-next-line no-use-before-define
+  Partial<Pick<Light, "position" | "distance" | "diffuse">>;
 
 /**
  * Class for light objects.
@@ -48,13 +57,13 @@ export default class Light {
 
   /**
    * @constructor
-   * @param {LightOptions} [options] - Options to be applied to this light.
+   * @param {LightOptions} [options={}] - Options to be applied to this light.
    * @param {Vec2} [options.position] - Position of this light. (0, 0) by default.
    * @param {number} [options.distance] - Intensity of this light.
    * @param {number} [options.diffuse] - How diffuse this light is.
    */
   public constructor(options: LightOptions = {}) {
-    const { position, distance, diffuse } = options as LightOptions;
+    const { position, distance, diffuse } = options;
 
     this.position = position ?? this.position;
     this.distance = distance ?? this.distance;

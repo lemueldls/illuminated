@@ -4,17 +4,31 @@ import Light, { LightOptions } from "./Light";
 
 import Vec2 from "./Vec2";
 
-export type LampOptions = Partial<
+/**
+ * Options to be applied to this lamp.
+ *
+ * @typedef LampOptions
+ * @property {string} [color] - The color emitted by the lamp.
+ * The color can be specified in any CSS format.
+ * @property {number} [radius] - The size of the lamp. Bigger lamps cast smoother shadows.
+ * @property {number} [samples] - The number of points which will be
+ * used for shadow projection. It defines the quality of the rendering.
+ * @property {number} [angle] - The angle of the orientation of the lamp.
+ * @property {number} [roughness] - The roughness of the oriented effect.
+ * @property {Vec2} [position] - Position of this lamp. (0, 0) by default.
+ * @property {number} [distance] - Intensity of this lamp.
+ * @property {number} [diffuse] - How diffuse this lamp is.
+ */
+export type LampOptions =
   // eslint-disable-next-line no-use-before-define
-  Pick<Lamp, "color" | "radius" | "samples" | "angle" | "roughness">
-> &
-  LightOptions;
+  Partial<Pick<Lamp, "color" | "radius" | "samples" | "angle" | "roughness"> & LightOptions>;
 
 /**
  * A circular light rendered as a radial gradient.
  * Lamps can also be "oriented" in a specific direction.
  *
  * @class Lamp
+ * @extends Light
  */
 export default class Lamp extends Light {
   /**
@@ -81,33 +95,33 @@ export default class Lamp extends Light {
    * @example
    * ```typescript
    * new Lamp({
-   *   position: new Vec2(12, 34),
-   *   distance: 100,
-   *   diffuse: 0.8,
-   *   color: "rgba(250,220,150,0.8)",
-   *   radius: 0,
-   *   samples: 1,
-   *   angle: 0,
-   *   roughness: 0
+   *  position: new Vec2(12, 34),
+   *  distance: 100,
+   *  diffuse: 0.8,
+   *  color: "rgba(250,220,150,0.8)",
+   *  radius: 0,
+   *  samples: 1,
+   *  angle: 0,
+   *  roughness: 0
    * })
    * ```
    *
-   * @param {LampOptions} [options] - Options to be applied to this lamp.
-   * @param {Vec2} [options.position] - Position of this lamp. (0, 0) by default.
-   * @param {number} [options.distance] - Intensity of this lamp.
-   * @param {number} [options.diffuse] - How diffuse this lamp is.
+   * @param {LampOptions} [options={}] - Options to be applied to this lamp.
    * @param {string} [options.color] - The color emitted by the lamp.
    * The color can be specified in any CSS format.
    * @param {number} [options.radius] - The size of the lamp. Bigger lamps cast smoother shadows.
-   * @param {number} [options.samples] - The number of points which will be used for shadow projection.
-   * It defines the quality of the rendering.
+   * @param {number} [options.samples] - The number of points which will be used
+   * for shadow projection. It defines the quality of the rendering.
    * @param {number} [options.angle] - The angle of the orientation of the lamp.
    * @param {number} [options.roughness] - The roughness of the oriented effect.
+   * @param {Vec2} [options.position] - Position of this lamp. (0, 0) by default.
+   * @param {number} [options.distance] - Intensity of this lamp.
+   * @param {number} [options.diffuse] - How diffuse this lamp is.
    */
   public constructor(options: LampOptions = {}) {
     super(options);
 
-    const { color, radius, samples, angle, roughness } = options as LampOptions;
+    const { color, radius, samples, angle, roughness } = options;
 
     this.color = color ?? this.color;
     this.radius = radius ?? this.radius;

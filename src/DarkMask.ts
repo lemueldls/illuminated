@@ -1,8 +1,17 @@
 import Light from "./Light";
 import { CanvasAndContext, createCanvasAnd2dContext } from "./utils";
 
-// eslint-disable-next-line no-use-before-define
-export type DarkMaskOptions = Partial<Pick<DarkMask, "lights" | "color">>;
+/**
+ * Options to be applied to this light.
+ *
+ * @typedef {Object} DarkMaskOptions
+ * @property {Light[]} [lights] - An array of [[`Light`]] objects
+ * that illuminate the rest of the scene.
+ * @property {string} [color] - The color of the dark area in RGBA format.
+ */
+export type DarkMaskOptions =
+  // eslint-disable-next-line no-use-before-define
+  Partial<Pick<DarkMask, "lights" | "color">>;
 
 /**
  * Defines the dark layer which hides the dark area not illuminated by a set of lights.
@@ -31,13 +40,13 @@ export default class DarkMask {
 
   /**
    * @constructor
-   * @param {DarkMaskOptions} [options] - Options to be applied to this light.
+   * @param {DarkMaskOptions} [options={}] - Options to be applied to this light.
    * @param {Light[]} [options.lights] - An array of {@linkcode Light} objects
    * that illuminate the rest of the scene.
    * @param {string} [options.color] - The color of the dark area in RGBA format.
    */
   public constructor(options: DarkMaskOptions = {}) {
-    const { lights, color } = options as DarkMaskOptions;
+    const { lights, color } = options;
 
     this.lights = lights ?? this.lights;
     this.color = color ?? this.color;
