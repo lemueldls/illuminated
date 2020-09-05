@@ -1,0 +1,14 @@
+cache: yarn
+
+language: node_js
+node_js:
+  - "node"
+  - "lts/*"
+  - "14"
+  - "12"
+  - "10"
+
+script:
+  - run: yarn build
+  - run: yarn lint
+  # - run: yarn test
