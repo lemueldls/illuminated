@@ -9,6 +9,6 @@ node_js:
   - "10"
 
 script:
-  - run: yarn build
-  - run: yarn lint
-  # - run: yarn test
+  - yarn build
+  - yarn lint
+  # - yarn test
