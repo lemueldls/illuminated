@@ -4,12 +4,19 @@ import { terser } from "rollup-plugin-terser";
 
 export default {
   input: "src/illuminated.ts",
-  output: {
-    dir: "dist",
-    format: "umd",
-    name: "Illuminated",
-    sourcemap: true
-  },
+  output: [
+    {
+      file: "dist/illuminated.umd.js",
+      format: "umd",
+      name: "Illuminated",
+      sourcemap: true
+    },
+    {
+      file: "dist/illuminated.esm.js",
+      format: "es",
+      sourcemap: true
+    }
+  ],
   plugins: [
     typescript(),
     terser({
