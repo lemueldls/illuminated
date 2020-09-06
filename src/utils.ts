@@ -204,24 +204,28 @@ export function getTan2(radius: number, center: Vec2 | number, pointY?: number):
   solutions.push(soln);
   const dist1 = soln.length2();
 
+  // console.log(`N${1}):`, dist0, dist1);
+
   if (Math.abs(dist0 - dist1) < epsilon) return solutions;
 
   soln = new Vec2(x0 + ntCos, y0 - ntSin);
   solutions.push(soln);
   const dist2 = soln.length2();
 
+  // console.log(`N${2}):`, dist2);
+
   // Changed order so no strange X of light inside the circle. Could also sort results.
   if (Math.abs(dist1 - dist2) < epsilon) return [soln, solutions[1]];
   if (Math.abs(dist0 - dist2) < epsilon) return [solutions[0], soln];
-
   soln = new Vec2(x0 + ttCos, y0 + ttSin);
   solutions.push(soln);
   const dist3 = soln.length2();
 
+  // console.log(`N${3}):`, dist3);
+
   if (Math.abs(dist2 - dist3) < epsilon) return [solutions[2], soln];
   if (Math.abs(dist1 - dist3) < epsilon) return [solutions[1], soln];
   if (Math.abs(dist0 - dist3) < epsilon) return [solutions[0], soln];
-
   // return all 4 solutions if no matching vector lengths found.
   return solutions;
 }
