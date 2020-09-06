@@ -1,6 +1,6 @@
 # Illuminated
 
-[![NPM Version](https://img.shields.io/github/package-json/v/lemueldls/illuminated?logo=github&style=flat-square)](https://www.npmjs.com/package/illuminated)
+[![NPM Version](https://img.shields.io/github/package-json/v/lemueldls/illuminated?logo=github&style=flat-square)](https://github.com/lemueldls/illuminated)
 [![Project License](https://img.shields.io/npm/l/illuminated?logo=github&style=flat-square)](https://github.com/lemueldls/illuminated)
 [![NPM Downloads](https://img.shields.io/npm/dw/illuminated?logo=npm&style=flat-square)](https://www.npmjs.com/package/illuminated)
 
