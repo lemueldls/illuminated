@@ -18,7 +18,7 @@
     "url": "https://github.com/lemueldls/illuminated/issues"
   },
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest",
     "docs": "typedoc",
     "build": "rollup -c rollup.config.ts",
     "lint": "eslint \"src/**/*.ts\""
@@ -38,6 +38,7 @@
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
     "canvas": "^2.6.1",
+    "coveralls": "^3.1.0",
     "eslint": "^7.8.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-google": "^0.14.0",

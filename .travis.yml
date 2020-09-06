@@ -1,3 +1,9 @@
+sudo: false
+os:
+  - linux
+  - windows
+  - osx
+
 cache: yarn
 
 language: node_js
@@ -11,4 +17,10 @@ node_js:
 script:
   - yarn build
   - yarn lint
-  # - yarn test
+  - yarn test
+
+jobs:
+  include:
+    - stage: Produce Coverage
+      node_js: node
+      script: jest --coverage && coveralls < coverage/lcov.info
