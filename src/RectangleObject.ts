@@ -5,10 +5,10 @@ import Vec2 from "./Vec2";
  * Options to be applied to this rectangle object.
  *
  * @typedef RectangleObjectOptions
- * @property {Vec2} [topleft] - A vector that is the top-left of the rectangle.
- * @property {Vec2} [bottomright] - A vector that is the bottom-right of the rectangle.
  * @property {Vec2} [points] - An array of [[`Vec2`]] points that define the polygon.
  * @property {number} [diffuse] - How diffuse this polygon object should be.
+ * @property {Vec2} [topleft] - A vector that is the top-left of the rectangle.
+ * @property {Vec2} [bottomright] - A vector that is the bottom-right of the rectangle.
  */
 export type RectangleObjectOptions =
   // eslint-disable-next-line no-use-before-define
@@ -40,10 +40,10 @@ export default class RectangleObject extends PolygonObject {
   /**
    * @constructor
    * @param {RectangleObjectOptions} [options={}] - Options to be applied to this rectangle object.
-   * @param {Vec2} [options.topleft] - A vector that is the top-left of the rectangle.
-   * @param {Vec2} [options.bottomright] - A vector that is the bottom-right of the rectangle.
    * @param {Vec2} [options.points] - An array of {@linkcode Vec2} points that define the polygon.
    * @param {number} [options.diffuse] - How diffuse this polygon object should be.
+   * @param {Vec2} [options.topleft] - A vector that is the top-left of the rectangle.
+   * @param {Vec2} [options.bottomright] - A vector that is the bottom-right of the rectangle.
    */
   public constructor(options: RectangleObjectOptions = {}) {
     super(options);

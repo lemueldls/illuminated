@@ -17,6 +17,9 @@ export type OpaqueObjectOptions =
  * @class OpaqueObject
  */
 export default class OpaqueObject {
+  /** @type {number} */
+  public uniqueId = 0;
+
   /**
    * How diffuse this opaque object should be.
    *
@@ -24,9 +27,6 @@ export default class OpaqueObject {
    * @default 0.8
    */
   public diffuse = 0.8;
-
-  /** @type {number} */
-  public uniqueId = 0;
 
   /**
    * @constructor
@@ -65,9 +65,8 @@ export default class OpaqueObject {
     _origin: Vec2,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _bounds: Bounds
-  ): void {
-    throw new Error("Method not implemented.");
-  }
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+  ): void {}
 
   /**
    * Draw the path of the polygon onto the ctx.
@@ -77,9 +76,8 @@ export default class OpaqueObject {
   public path(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _ctx: CanvasRenderingContext2D
-  ): void {
-    throw new Error("Method not implemented.");
-  }
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+  ): void {}
 
   /**
    * Determine if the given point is inside the polygon.

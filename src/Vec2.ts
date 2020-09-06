@@ -84,7 +84,7 @@ export default class Vec2 {
     const dx = this.x - v.x;
     const dy = this.y - v.y;
 
-    return dx * dx + dy * dy;
+    return dx ** 2 + dy ** 2;
   }
 
   /**
@@ -95,7 +95,7 @@ export default class Vec2 {
   public normalize(): Vec2 {
     const length = Math.sqrt(this.length2());
 
-    return new Vec2(this.x / length, this.y / length);
+    return new Vec2(this.x / length || 0, this.y / length || 0);
   }
 
   /**
@@ -104,7 +104,7 @@ export default class Vec2 {
    * @return {number} The squared length.
    */
   public length2(): number {
-    return this.x * this.x + this.y * this.y;
+    return this.x ** 2 + this.y ** 2;
   }
 
   /**

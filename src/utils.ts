@@ -2,7 +2,11 @@ import Vec2 from "./Vec2";
 
 /**
  * Boundaries with the properties `topleft` and `bottomright`.
- * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
+ * The property values are [[`Vec2`]] objects representing the corners of the boundary.
+ *
+ * @typedef {Object} Bounds
+ * @property {Vec2} topleft
+ * @property {Vec2} bottomright
  */
 export interface Bounds {
   topleft: Vec2;
@@ -62,6 +66,8 @@ export function createCanvasAnd2dContext(
  */
 export function path(ctx: CanvasRenderingContext2D, points: Vec2[], dontJoinLast?: boolean): void {
   let p = points[0];
+  if (!p) throw new Error("There are no points to draw a path of.");
+
   ctx.moveTo(p.x, p.y);
 
   for (let i = 1, l = points.length; i < l; ++i) {
@@ -79,7 +85,7 @@ export function path(ctx: CanvasRenderingContext2D, points: Vec2[], dontJoinLast
  * Converts a CSS color string into RGBA format.
  *
  * @param {string} color - Color in any CSS format.
- * @param {number} alpha - Alpha value for produced color.
+ * @param {number} [alpha=1] - Alpha value for produced color.
  * @return {string} Color in RGBA format.
  */
 export const getRGBA = (() => {
@@ -89,13 +95,13 @@ export const getRGBA = (() => {
   canvas.height = 1;
   const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
-  return (color: string, alpha: number) => {
+  return (color: string, alpha = 1) => {
     ctx.clearRect(0, 0, 1, 1);
     ctx.fillStyle = color;
     ctx.fillRect(0, 0, 1, 1);
 
-    const d = ctx.getImageData(0, 0, 1, 1).data;
-    return `rgba(${[d[0], d[1], d[2], alpha]})`;
+    const [red, green, blue] = ctx.getImageData(0, 0, 1, 1).data;
+    return `rgba(${[red, green, blue, alpha]})`;
   };
 })();
 
@@ -134,10 +140,10 @@ export const extractColorAndAlpha: (
     ctx.fillStyle = color;
     ctx.fillRect(0, 0, 1, 1);
 
-    const d = ctx.getImageData(0, 0, 1, 1).data;
+    const [red, green, blue, alpha] = ctx.getImageData(0, 0, 1, 1).data;
     return {
-      color: `#${toHex(d[0])}${toHex(d[1])}${toHex(d[2])}`,
-      alpha: Math.round((1000 * d[3]) / 255) / 1000
+      color: `#${toHex(red)}${toHex(green)}${toHex(blue)}`,
+      alpha: Math.round((1000 * alpha) / 255) / 1000
     };
   };
 })();
@@ -146,35 +152,38 @@ export const extractColorAndAlpha: (
  * Get tangents from (0, 0) to circle of radius with given center, for {@linkcode DiscObject.cast}.
  *
  * @param {number} radius
- * @param {Vec2} center
+ * @param {(Vec2|number)} center
  * @param {number} pointY
  * @return {Vec2[]}
  */
-export function getTan2(radius: number, center: Vec2, pointY?: number): Vec2[] {
-  let point = center;
+export function getTan2(radius: number, center: Vec2 | number, pointY?: number): Vec2[] {
   const epsilon = 1e-6; // getTan2.epsilon
+
   let x0;
   let y0;
   let len2;
   let soln;
+
   const solutions = [];
   const a = radius;
-  if (typeof a === "object" && typeof point === "number") {
-    const tmp = a;
-    point = a;
-    point = tmp; // swap
-  }
-  if (typeof point === "number") {
+
+  // if (typeof a === "object" && typeof center === "number") {
+  //   const tmp = a;
+  //   center = a;
+  //   center = tmp; // swap
+  // }
+  if (typeof center === "number") {
     // getTan2(radius:number, x0:number, y0:number)
-    x0 = point;
+    x0 = center;
     y0 = pointY || 0;
     len2 = x0 * x0 + y0 * y0;
   } else {
     // getTans2(radius:number, center:object={x:x0,y:y0})
-    x0 = point.x;
-    y0 = point.y;
-    len2 = point.length2();
+    x0 = center.x;
+    y0 = center.y;
+    len2 = center.length2();
   }
+
   // t = +/- Math.acos( (-a*x0 +/- y0 * Math.sqrt(x0*x0 + y0*y0 - a*a))/(x0*x0 + y0*y) );
   const len2a = y0 * Math.sqrt(len2 - a * a);
   const tt = Math.acos((-a * x0 + len2a) / len2);
@@ -194,11 +203,13 @@ export function getTan2(radius: number, center: Vec2, pointY?: number): Vec2[] {
   soln = new Vec2(x0 + ttCos, y0 - ttSin);
   solutions.push(soln);
   const dist1 = soln.length2();
+
   if (Math.abs(dist0 - dist1) < epsilon) return solutions;
 
   soln = new Vec2(x0 + ntCos, y0 - ntSin);
   solutions.push(soln);
   const dist2 = soln.length2();
+
   // Changed order so no strange X of light inside the circle. Could also sort results.
   if (Math.abs(dist1 - dist2) < epsilon) return [soln, solutions[1]];
   if (Math.abs(dist0 - dist2) < epsilon) return [solutions[0], soln];
@@ -206,6 +217,7 @@ export function getTan2(radius: number, center: Vec2, pointY?: number): Vec2[] {
   soln = new Vec2(x0 + ttCos, y0 + ttSin);
   solutions.push(soln);
   const dist3 = soln.length2();
+
   if (Math.abs(dist2 - dist3) < epsilon) return [solutions[2], soln];
   if (Math.abs(dist1 - dist3) < epsilon) return [solutions[1], soln];
   if (Math.abs(dist0 - dist3) < epsilon) return [solutions[0], soln];

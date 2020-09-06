@@ -20,8 +20,6 @@ export type LightOptions =
  * @class Light
  */
 export default class Light {
-  protected id!: number;
-
   /**
    * Position of this light. (0, 0) by default.
    *
@@ -46,11 +44,14 @@ export default class Light {
    */
   public diffuse = 0.8;
 
+  /** @type {number} */
+  protected id!: number;
+
   /** @type {string} */
-  public vismaskhash!: string;
+  #vismaskhash!: string;
 
   /** @type {CanvasAndContext} */
-  private vismaskcache!: CanvasAndContext;
+  #vismaskcache!: CanvasAndContext;
 
   /** @type {number} */
   public samples!: number;
@@ -78,9 +79,8 @@ export default class Light {
   public render(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _ctx: CanvasRenderingContext2D
-  ): void {
-    throw new Error("Method not implemented.");
-  }
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+  ): void {}
 
   /**
    * Render a mask representing the visibility. (Used by {@linkcode DarkMask}.)
@@ -147,11 +147,11 @@ export default class Light {
     const d = Math.floor(this.distance * 1.4);
     const hash = `${d}`;
 
-    if (this.vismaskhash !== hash) {
-      this.vismaskhash = hash;
-      this.vismaskcache = createCanvasAnd2dContext(`vm${this.id}`, 2 * d, 2 * d);
+    if (this.#vismaskhash !== hash) {
+      this.#vismaskhash = hash;
+      this.#vismaskcache = createCanvasAnd2dContext(`vm${this.id}`, 2 * d, 2 * d);
 
-      const c = this.vismaskcache;
+      const c = this.#vismaskcache;
       const g = c.ctx.createRadialGradient(d, d, 0, d, d, d);
       g.addColorStop(0, "rgba(0,0,0,1)");
       g.addColorStop(1, "rgba(0,0,0,0)");
@@ -159,15 +159,15 @@ export default class Light {
       c.ctx.fillRect(0, 0, c.w, c.h);
     }
 
-    return this.vismaskcache;
+    return this.#vismaskcache;
   }
 
-  /**
-   * Return a string hash key representing this lamp.
-   *
-   * @return {string} The hash key.
-   */
-  protected getHashCache(): string {
-    return [this.distance, this.diffuse].toString();
-  }
+  // /**
+  //  * Return a string hash key representing this lamp.
+  //  *
+  //  * @return {string} The hash key.
+  //  */
+  // protected getHashCache(): string {
+  //   return [this.distance, this.diffuse].toString();
+  // }
 }

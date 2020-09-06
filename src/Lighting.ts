@@ -68,6 +68,28 @@ export default class Lighting {
   }
 
   /**
+   * Compute the shadows to cast.
+   *
+   * @param {number} w - Width of the canvas context.
+   * @param {number} h - Height of the canvas context.
+   */
+  public compute(w: number, h: number): void {
+    if (!this.#cache || this.#cache.w !== w || this.#cache.h !== h) this.createCache(w, h);
+
+    const { ctx } = this.#cache;
+    const { light } = this;
+
+    ctx.save();
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    light.render(ctx);
+    ctx.globalCompositeOperation = "destination-out";
+
+    this.cast(ctx);
+    ctx.restore();
+  }
+
+  /**
    * Draw the shadows that are cast by the objects. You usually don't have to use
    * it if you use render().
    *
@@ -109,34 +131,17 @@ export default class Lighting {
 
     // Draw objects diffuse - the intensity of the light penetration in objects
     objects.forEach((object) => {
-      let diffuse = object.diffuse === undefined ? 0.8 : object.diffuse;
+      let { diffuse } = object;
       diffuse *= light.diffuse;
+
       ctx.fillStyle = `rgba(0,0,0,${1 - diffuse})`;
       ctx.beginPath();
+
       object.path(ctx);
       ctx.fill();
     });
 
     ctxoutput.drawImage(c.canvas, 0, 0);
-  }
-
-  /**
-   * Compute the shadows to cast.
-   *
-   * @param {number} w - Width of the canvas context.
-   * @param {number} h - Height of the canvas context.
-   */
-  public compute(w: number, h: number): void {
-    if (!this.#cache || this.#cache.w !== w || this.#cache.h !== h) this.createCache(w, h);
-    const { ctx } = this.#cache;
-    const { light } = this;
-    ctx.save();
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-    light.render(ctx);
-    ctx.globalCompositeOperation = "destination-out";
-    this.cast(ctx);
-    ctx.restore();
   }
 
   /**

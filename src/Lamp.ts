@@ -8,6 +8,7 @@ import Vec2 from "./Vec2";
  * Options to be applied to this lamp.
  *
  * @typedef LampOptions
+ * @property {number} [id] - The id of this light object.
  * @property {string} [color] - The color emitted by the lamp.
  * The color can be specified in any CSS format.
  * @property {number} [radius] - The size of the lamp. Bigger lamps cast smoother shadows.
@@ -21,7 +22,7 @@ import Vec2 from "./Vec2";
  */
 export type LampOptions =
   // eslint-disable-next-line no-use-before-define
-  Partial<Pick<Lamp, "color" | "radius" | "samples" | "angle" | "roughness"> & LightOptions>;
+  Partial<Pick<Lamp, "id" | "color" | "radius" | "samples" | "angle" | "roughness"> & LightOptions>;
 
 /**
  * A circular light rendered as a radial gradient.
@@ -107,6 +108,7 @@ export default class Lamp extends Light {
    * ```
    *
    * @param {LampOptions} [options={}] - Options to be applied to this lamp.
+   * @param {number} [options.id] - The id of this light object.
    * @param {string} [options.color] - The color emitted by the lamp.
    * The color can be specified in any CSS format.
    * @param {number} [options.radius] - The size of the lamp. Bigger lamps cast smoother shadows.
@@ -121,8 +123,9 @@ export default class Lamp extends Light {
   public constructor(options: LampOptions = {}) {
     super(options);
 
-    const { color, radius, samples, angle, roughness } = options;
+    const { id, color, radius, samples, angle, roughness } = options;
 
+    this.id = id ?? this.id;
     this.color = color ?? this.color;
     this.radius = radius ?? this.radius;
     this.samples = samples ?? this.samples;

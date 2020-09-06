@@ -69,13 +69,13 @@ export default class DiscObject extends OpaqueObject {
     let originToM = m.sub(origin);
 
     // FIXED: this method was wrong... TODO must see http://en.wikipedia.org/wiki/Tangent_lines_to_circles
-    // var d = new Vec2(originToM.y, -originToM.x).normalize().mul(this.radius);
+    // const d = new Vec2(originToM.y, -originToM.x).normalize().mul(this.radius);
 
-    // var a = this.center.add(d);
-    // var b = this.center.add(d.inv());
+    // const a = this.center.add(d);
+    // const b = this.center.add(d.inv());
 
-    // var originToA = a.sub(origin);
-    // var originToB = b.sub(origin);
+    // let originToA = a.sub(origin);
+    // let originToB = b.sub(origin);
 
     const tangentLines = getTan2(this.radius, originToM);
     let originToA = tangentLines[0];

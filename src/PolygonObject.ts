@@ -50,7 +50,10 @@ export default class PolygonObject extends OpaqueObject {
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public bounds(): Bounds {
-    const topleft = this.points[0].copy();
+    const first = this.points[0];
+    if (!first) throw new Error("There are no points to calculate the boundaries of.");
+
+    const topleft = first.copy();
     const bottomright = topleft.copy();
 
     for (let p = 1, l = this.points.length; p < l; ++p) {
