@@ -33,6 +33,7 @@
     "no-plusplus": "off",
 
     "prettier/prettier": "warn",
+    "curly": ["warn", "multi-or-nest"],
     "semi": ["warn", "always"],
     "indent": [
       "off",

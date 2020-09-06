@@ -89,10 +89,10 @@ export default class PolygonObject extends OpaqueObject {
           points[i].x +
             ((y - points[i].y) / (points[j].y - points[i].y)) * (points[j].x - points[i].x) <
           x
-        ) {
+        )
           oddNodes = !oddNodes;
-        }
       }
+
       j = i;
     }
     return oddNodes;
@@ -178,9 +178,7 @@ export default class PolygonObject extends OpaqueObject {
         const aToB = b.sub(a);
         const normal = new Vec2(aToB.y, -aToB.x);
 
-        if (normal.dot(originToA) < 0) {
-          f(a, b, originToA, originToB, aToB);
-        }
+        if (normal.dot(originToA) < 0) f(a, b, originToA, originToB, aToB);
       }
     }
   }

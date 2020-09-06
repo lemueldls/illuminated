@@ -215,9 +215,8 @@ export default class Lamp extends Light {
   private getGradientCache(center: Vec2): CanvasAndContext {
     const hashcode = this.getHashCache();
 
-    if (this.#cacheHashcode === hashcode) {
-      return this.#gcache;
-    }
+    if (this.#cacheHashcode === hashcode) return this.#gcache;
+
     this.#cacheHashcode = hashcode;
 
     const d = Math.round(this.distance);
