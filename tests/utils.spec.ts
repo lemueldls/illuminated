@@ -3,8 +3,7 @@ import {
   path,
   getRGBA,
   extractColorAndAlpha,
-  getTan2,
-  lmao
+  getTan2
 } from "../src/utils";
 import Vec2 from "../src/Vec2";
 
