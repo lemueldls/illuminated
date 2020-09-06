@@ -4,6 +4,7 @@
   "private": false,
   "author": "Lemuel De Los Santos",
   "description": "A modern TypeScript rewrite of the Illuminated.js library originally written by Gaëtan Renaudeau.",
+  "type": "module",
   "main": "./dist/illuminated.umd.js",
   "module": "./dist/illuminated.esm.js",
   "types": "./dist/illuminated.d.ts",
@@ -17,7 +18,7 @@
     "url": "https://github.com/lemueldls/illuminated/issues"
   },
   "scripts": {
-    "test": "",
+    "test": "jest --coverage",
     "docs": "typedoc",
     "build": "rollup -c rollup.config.ts",
     "lint": "eslint \"src/**/*.ts\""
@@ -25,12 +26,18 @@
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-private-methods": "^7.10.4",
     "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
+    "@babel/preset-typescript": "^7.10.4",
     "@babel/runtime": "^7.11.2",
     "@rollup/plugin-babel": "^5.2.0",
+    "@types/jest": "^26.0.13",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
+    "canvas": "^2.6.1",
     "eslint": "^7.8.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-google": "^0.14.0",
@@ -39,6 +46,7 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.6",
+    "jest": "^26.4.2",
     "prettier": "^2.1.1",
     "rollup": "^2.26.9",
     "rollup-plugin-terser": "^7.0.1",

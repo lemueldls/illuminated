@@ -1,6 +1,6 @@
 # Illuminated
 
-[![Travis CI Build](https://img.shields.io/travis/com/lemueldls/illuminated?style=flat-square)](https://travis-ci.com/github/lemueldls/illuminated)
+[![Travis CI Build](https://img.shields.io/travis/com/lemueldls/illuminated?logo=travis&style=flat-square)](https://travis-ci.com/github/lemueldls/illuminated)
 [![Codacy Grade](https://img.shields.io/codacy/grade/2e67c452bb3a4e51a4d9d4b1dff471e2?logo=codacy&style=flat-square)](https://www.codacy.com/manual/lemueldls/illuminated)
 [![Snyk Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/illuminated?logo=snyk&style=flat-square)](https://snyk.io/test/github/lemueldls/illuminated)
 
