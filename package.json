@@ -5,9 +5,10 @@
   "author": "Lemuel De Los Santos",
   "description": "A modern TypeScript rewrite of the Illuminated.js library originally written by Gaëtan Renaudeau.",
   "type": "module",
-  "main": "./dist/illuminated.umd.js",
-  "module": "./dist/illuminated.esm.js",
-  "types": "./dist/illuminated.d.ts",
+  "main": "dist/illuminated.umd.js",
+  "browser": "dist/illuminated.umd.js",
+  "module": "dist/illuminated.esm.js",
+  "types": "dist/types/illuminated.d.ts",
   "files": [
     "dist"
   ],
@@ -21,6 +22,7 @@
     "test": "jest",
     "docs": "typedoc",
     "build": "rollup -c rollup.config.ts",
+    "dev": "yarn build --watch",
     "lint": "eslint \"src/**/*.ts\""
   },
   "dependencies": {},
@@ -29,11 +31,14 @@
     "@babel/node": "^7.10.5",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-private-methods": "^7.10.4",
+    "@babel/plugin-syntax-nullish-coalescing-operator": "^7.8.3",
+    "@babel/plugin-syntax-optional-chaining": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
     "@babel/runtime": "^7.11.2",
-    "@rollup/plugin-babel": "^5.2.0",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
     "@types/jest": "^26.0.13",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
@@ -52,9 +57,11 @@
     "rollup": "^2.26.9",
     "rollup-plugin-terser": "^7.0.1",
     "rollup-plugin-typescript2": "^0.27.2",
-    "tslib": "^2.0.1",
     "typedoc": "^0.19.0",
     "typescript": "^4.0.2"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   },
   "keywords": [
     "illuminated",

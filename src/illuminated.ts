@@ -1,3 +1,8 @@
+/**
+ * Illuminated - A 2D lights and shadows rendering engine for HTML5 applications and games.
+ * @packageDocumentation
+ */
+
 import DarkMask from "./DarkMask";
 import DiscObject from "./DiscObject";
 import Lamp from "./Lamp";
@@ -12,10 +17,6 @@ import Vec2 from "./Vec2";
 export * from "./constants";
 export * from "./utils";
 
-/**
- * Illuminated - A 2D lights and shadows rendering engine for HTML5 applications and games.
- * @packageDocumentation
- */
 export {
   DarkMask,
   DiscObject,
