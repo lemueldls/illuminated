@@ -50,6 +50,8 @@ it("should convert color to hex object", () =>
   expect(extractColorAndAlpha("teal")).toStrictEqual({ color: "#008080", alpha: 1 }));
 
 it("should get tangents", () => {
+  // for (let i = 0; i < 5; i += 0.1)
+  //   for (let j = 0; j < 5; j += 0.1) for (let k = 0; k < 5; k += 0.1) getTan2(i, j, k);
   getTan2(0, 0);
   getTan2(6, new Vec2(9, 3));
   getTan2(-25, -25, -25);
