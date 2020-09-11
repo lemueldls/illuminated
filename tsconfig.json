@@ -4,7 +4,7 @@
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "module": "esnext",
-    "target": "es2020",
+    "target": "es6",
     "outDir": "./dist",
     "sourceMap": true,
     "declaration": true,
