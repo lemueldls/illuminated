@@ -18,7 +18,7 @@ install: yarn install --immutable
 
 script:
   - yarn build
-  - yarn lint
+  # - yarn lint
   - yarn test
 
 jobs:
