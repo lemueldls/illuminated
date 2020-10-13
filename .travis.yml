@@ -1,8 +1,8 @@
 sudo: false
 os:
   - linux
-  # - windows
-  # - osx
+  - windows
+  - osx
 
 cache: yarn
 
@@ -13,6 +13,8 @@ node_js:
   - "14"
   - "12"
   - "10"
+
+install: yarn install --immutable
 
 script:
   - yarn build
