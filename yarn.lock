@@ -2079,9 +2079,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yarnpkg/pnpify@npm:^2.3.2":
-  version: 2.3.2
-  resolution: "@yarnpkg/pnpify@npm:2.3.2"
+"@yarnpkg/pnpify@npm:^2.3.3":
+  version: 2.3.3
+  resolution: "@yarnpkg/pnpify@npm:2.3.3"
   dependencies:
     "@yarnpkg/core": ^2.3.1
     "@yarnpkg/fslib": ^2.3.0
@@ -2101,7 +2101,7 @@ __metadata:
       optional: true
   bin:
     pnpify: ./lib/cli.js
-  checksum: 9b125533af2877091aedebe0356f1b98c7f10bf3a5fc3820afee8dfc13bffcdb38d412647fe4d02d3e01210237e5a922e6a21354c65ae2462d5ef98bd921d974
+  checksum: 80ccd1a56083913c105d7028ca63bac2fd62883404bf929fe1bea12c0768d6e0f981a61654115e6bbe700309887cafe108c0bce7a4bd603d8cbaeb29773c5014
   languageName: node
   linkType: hard
 
@@ -3532,12 +3532,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.7.14":
-  version: 0.7.14
-  resolution: "esbuild@npm:0.7.14"
+"esbuild@npm:^0.7.15":
+  version: 0.7.15
+  resolution: "esbuild@npm:0.7.15"
   bin:
     esbuild: bin/esbuild
-  checksum: 7704ada3a36d34c14e68b308628db2a2d765857a3b4b917ed39108b2a59986de68705e5e9d06a03915ac3d58845988dceaf94e5a6bea229fe25af330caef0b10
+  checksum: ff76542e2a58e654bf015e2f154c9537b0232abfb271b17cb69b2a5319b9620be738d7991720b7c1e2e3382204aeaf863ab12783ec157a4a01e066714b3ea95e
   languageName: node
   linkType: hard
 
@@ -4723,10 +4723,10 @@ __metadata:
     "@types/jest": ^26.0.14
     "@typescript-eslint/eslint-plugin": ^4.4.1
     "@typescript-eslint/parser": ^4.4.1
-    "@yarnpkg/pnpify": ^2.3.2
+    "@yarnpkg/pnpify": ^2.3.3
     canvas: ^2.6.1
     coveralls: ^3.1.0
-    esbuild: ^0.7.14
+    esbuild: ^0.7.15
     eslint: ^7.11.0
     eslint-config-airbnb: ^18.2.0
     eslint-config-google: ^0.14.0
@@ -4739,7 +4739,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.1.2
     jest: ^26.5.3
     prettier: ^2.1.2
-    rollup: ^2.29.0
+    rollup: ^2.30.0
     rollup-plugin-dts: ^1.4.13
     rollup-plugin-esbuild: ^2.5.2
     rollup-plugin-terser: ^7.0.2
@@ -5636,18 +5636,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-worker@npm:^26.2.1":
-  version: 26.3.0
-  resolution: "jest-worker@npm:26.3.0"
-  dependencies:
-    "@types/node": "*"
-    merge-stream: ^2.0.0
-    supports-color: ^7.0.0
-  checksum: 6b7190ef8f6e0dec1a2ed865624e45bc7a7d18795911890423813d1972521abe6f1f2e57076070cb70efa3b5f1b5cf54f33bc7e0bcda41d04341df47f0487d59
-  languageName: node
-  linkType: hard
-
-"jest-worker@npm:^26.5.0":
+"jest-worker@npm:^26.2.1, jest-worker@npm:^26.5.0":
   version: 26.5.0
   resolution: "jest-worker@npm:26.5.0"
   dependencies:
@@ -7702,9 +7691,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.29.0":
-  version: 2.29.0
-  resolution: "rollup@npm:2.29.0"
+"rollup@npm:^2.30.0":
+  version: 2.30.0
+  resolution: "rollup@npm:2.30.0"
   dependencies:
     fsevents: ~2.1.2
   dependenciesMeta:
@@ -7712,7 +7701,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: c5d8b9d8b19a5213e854132cea54bc4d3c9c3e7b66e994de590032c85ff74193721789b1867595182f91e6b15e9a2caaaca4262840957da9cdc3369940754c86
+  checksum: 828728f31cb6931c20c31b7be1213d163c28faca6533becb75de072f549057db82601708b69dbfca8d59bbf68ca17ff5f497715631f63e62830b587354d4be45
   languageName: node
   linkType: hard
 
@@ -8020,7 +8009,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-support@npm:^0.5.16, source-map-support@npm:^0.5.6, source-map-support@npm:~0.5.12":
+"source-map-support@npm:^0.5.16, source-map-support@npm:^0.5.6, source-map-support@npm:~0.5.19":
   version: 0.5.19
   resolution: "source-map-support@npm:0.5.19"
   dependencies:
@@ -8051,7 +8040,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map@npm:^0.7.3":
+"source-map@npm:^0.7.3, source-map@npm:~0.7.2":
   version: 0.7.3
   resolution: "source-map@npm:0.7.3"
   checksum: 351ce26ffa1ebf203660c0d70d7566c81e65d2d994d1c2d94da140808e02da34961673ce12ecea9b40797b96fbeb8c70bf71a4ad9f779f1a4fdbba75530bb386
@@ -8465,15 +8454,15 @@ __metadata:
   linkType: hard
 
 "terser@npm:^5.0.0":
-  version: 5.3.2
-  resolution: "terser@npm:5.3.2"
+  version: 5.3.5
+  resolution: "terser@npm:5.3.5"
   dependencies:
     commander: ^2.20.0
-    source-map: ~0.6.1
-    source-map-support: ~0.5.12
+    source-map: ~0.7.2
+    source-map-support: ~0.5.19
   bin:
     terser: bin/terser
-  checksum: 4de06e4c6ca0e01199a9beba4a6a1e7b76d3465e2cfcf6a7cb195badfdebace709aa687fa209fb6793fa30d74b935d3d1e68603d3d90774109e0f2037a954ae3
+  checksum: a30a6d41d3737c626b000f672161f3b66fbe4a7daa2f7e0b9c1441a5a44424439865c412d455d5b47bac2a029ced7c698a46cfc146e43db5504b6b582ee692f5
   languageName: node
   linkType: hard
 

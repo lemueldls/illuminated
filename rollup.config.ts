@@ -1,4 +1,5 @@
 import esbuild from "rollup-plugin-esbuild";
+import { terser } from "rollup-plugin-terser";
 import dts from "rollup-plugin-dts";
 import { main, module, browser, types } from "./package.json";
 
@@ -15,7 +16,7 @@ export default [
       },
       {
         file: module,
-        format: "es",
+        format: "esm",
         sourcemap: true
       },
       {
@@ -25,7 +26,24 @@ export default [
         sourcemap: true
       }
     ],
-    plugins: [esbuild({ sourceMap: true, minify: true })]
+    plugins: [
+      esbuild({
+        minify: true,
+        target: "es2016",
+        sourceMap: true
+      }),
+      terser()
+    ]
   },
-  { input, output: [{ file: types, format: "es" }], plugins: [dts()] }
+  {
+    input,
+    output: [
+      {
+        file: types,
+        format: "es",
+        sourcemap: true
+      }
+    ],
+    plugins: [dts()]
+  }
 ];
