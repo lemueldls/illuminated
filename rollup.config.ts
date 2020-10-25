@@ -1,9 +1,12 @@
 import esbuild from "rollup-plugin-esbuild";
 import { terser } from "rollup-plugin-terser";
 import dts from "rollup-plugin-dts";
+
 import { main, module, browser, types } from "./package.json";
+import { compilerOptions } from "./tsconfig.json";
 
 const input = "src/illuminated.ts";
+const { target } = compilerOptions;
 
 export default [
   {
@@ -28,8 +31,8 @@ export default [
     ],
     plugins: [
       esbuild({
+        target,
         minify: true,
-        target: "es2016",
         sourceMap: true
       }),
       terser()
@@ -41,7 +44,7 @@ export default [
       {
         file: types,
         format: "es",
-        sourcemap: true
+        sourcemap: false
       }
     ],
     plugins: [dts()]
