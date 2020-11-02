@@ -100,7 +100,7 @@ export default class Light {
   /**
    * Calculate the boundaries of this light using the light's distance.
    *
-   * @return {Bounds} An anonymous object with the properties topleft and bottomright.
+   * @return {Bounds} An anonymous object with the properties `topleft` and `bottomright`.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public bounds(): Bounds {
@@ -162,12 +162,12 @@ export default class Light {
     return this.#vismaskcache;
   }
 
-  // /**
-  //  * Return a string hash key representing this lamp.
-  //  *
-  //  * @return {string} The hash key.
-  //  */
-  // protected getHashCache(): string {
-  //   return [this.distance, this.diffuse].toString();
-  // }
+  /**
+   * Return a string hash key representing this lamp.
+   *
+   * @return {string} The hash key.
+   */
+  protected getHashCache(): string {
+    return [this.distance, this.diffuse].toString();
+  }
 }

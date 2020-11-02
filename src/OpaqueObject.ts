@@ -42,7 +42,7 @@ export default class OpaqueObject {
   /**
    * Calculate the boundaries of this opaque object.
    *
-   * @return {Bounds} An anonymous object with the properties topleft and bottomright.
+   * @return {Bounds} An anonymous object with the properties `topleft` and `bottomright`.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public bounds(): Bounds {
@@ -55,7 +55,7 @@ export default class OpaqueObject {
    *
    * @param {CanvasRenderingContext2D} _ctx - The canvas context onto which the shadows will be cast.
    * @param {Vec2} _origin - A vector that represents the origin for the casted shadows.
-   * @param {Bounds} _bounds - An anonymous object with the properties topleft and bottomright.
+   * @param {Bounds} _bounds - An anonymous object with the properties `topleft` and `bottomright`.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public cast(

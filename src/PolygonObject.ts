@@ -46,7 +46,7 @@ export default class PolygonObject extends OpaqueObject {
   /**
    * Calculate the boundaries of this polygon object.
    *
-   * @return {Bounds} An anonymous object with the properties topleft and bottomright.
+   * @return {Bounds} An anonymous object with the properties `topleft` and `bottomright`.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public bounds(): Bounds {
@@ -156,8 +156,8 @@ export default class PolygonObject extends OpaqueObject {
    * Invoke a function for each of the visible edges in this polygon.
    *
    * @param {Vec2} origin - A vector that represents the origin for the casted shadows.
-   * @param {Bounds} bounds - An anonymous object with the properties topleft and
-   * bottomright. The property values are {@linkcode Vec2} objects representing
+   * @param {Bounds} bounds - An anonymous object with the properties `topleft` and
+   * `bottomright`. The property values are {@linkcode Vec2} objects representing
    * the corners of the boundary of this polygon.
    * @param {edgeCallback} f - The function to be invoked.
    */

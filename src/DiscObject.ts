@@ -61,7 +61,7 @@ export default class DiscObject extends OpaqueObject {
    *
    * @param {CanvasRenderingContext2D} ctx - The canvas context onto which the shadows will be cast.
    * @param {Vec2} origin - A vector that represents the origin for the casted shadows.
-   * @param {Bounds} bounds - An anonymous object with the properties topleft and bottomright.
+   * @param {Bounds} bounds - An anonymous object with the properties `topleft` and `bottomright`.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public cast(ctx: CanvasRenderingContext2D, origin: Vec2, bounds: Bounds): void {
@@ -115,7 +115,7 @@ export default class DiscObject extends OpaqueObject {
   /**
    * Calculate the boundaries of this disc object.
    *
-   * @return {Bounds} An anonymous object with the properties topleft and bottomright.
+   * @return {Bounds} An anonymous object with the properties `topleft` and `bottomright`.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public bounds(): Bounds {

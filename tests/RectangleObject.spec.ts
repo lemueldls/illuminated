@@ -11,13 +11,11 @@ it("should construct", () => {
   expect(obj1).toEqual({
     uniqueId: 0,
     diffuse: 0.8,
-    points: [],
+    points: [new Vec2(), new Vec2(), new Vec2(), new Vec2()],
     topleft: new Vec2(),
     bottomright: new Vec2()
   });
 });
-
-it("should initialize points", () => expect(obj1.syncFromTopleftBottomright()).toBeUndefined());
 
 it("should draw rectangle", () => {
   expect(obj1.fill(ctx)).toBeUndefined();

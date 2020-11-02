@@ -168,7 +168,7 @@ export default class Lamp extends Light {
   /**
    * Calculate the boundaries of this lamp based on its properties.
    *
-   * @return {Bounds} An anonymous object with the properties topleft and bottomright.
+   * @return {Bounds} An anonymous object with the properties `topleft` and `bottomright`.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public bounds(): Bounds {
