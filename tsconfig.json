@@ -14,11 +14,10 @@
     "moduleResolution": "node"
   },
   "typedocOptions": {
-    "mode": "modules",
+    "entryPoints": ["src/illuminated.ts"],
     "out": "docs",
     "name": "Illuminated",
-    "hideGenerator": true,
-    "theme": "default"
+    "hideGenerator": true
   },
   "files": ["src/illuminated.ts"],
   "exclude": ["dist", "node_modules"]
