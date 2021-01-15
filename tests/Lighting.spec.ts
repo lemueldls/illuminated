@@ -1,7 +1,7 @@
-import Lighting from "../src/Lighting";
 import DiscObject from "../src/DiscObject";
 import Lamp from "../src/Lamp";
 import Light from "../src/Light";
+import Lighting from "../src/Lighting";
 import OpaqueObject from "../src/OpaqueObject";
 
 const l1 = new Lighting();

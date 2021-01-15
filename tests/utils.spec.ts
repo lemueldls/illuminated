@@ -1,9 +1,9 @@
 import {
   createCanvasAnd2dContext,
-  path,
-  getRGBA,
   extractColorAndAlpha,
-  getTan2
+  getRGBA,
+  getTan2,
+  path
 } from "../src/utils";
 import Vec2 from "../src/Vec2";
 

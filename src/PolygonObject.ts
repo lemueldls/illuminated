@@ -1,6 +1,5 @@
-import { Bounds, path } from "./utils";
 import OpaqueObject, { OpaqueObjectOptions } from "./OpaqueObject";
-
+import { Bounds, path } from "./utils";
 import Vec2 from "./Vec2";
 
 /**

@@ -1,7 +1,6 @@
-import { Bounds, getTan2, path } from "./utils";
 import { _2PI } from "./constants";
 import OpaqueObject, { OpaqueObjectOptions } from "./OpaqueObject";
-
+import { Bounds, getTan2, path } from "./utils";
 import Vec2 from "./Vec2";
 
 /**

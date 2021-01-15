@@ -1,7 +1,6 @@
-import { Bounds, createCanvasAnd2dContext, CanvasAndContext, getRGBA } from "./utils";
 import { GOLDEN_ANGLE } from "./constants";
 import Light, { LightOptions } from "./Light";
-
+import { Bounds, CanvasAndContext, createCanvasAnd2dContext, getRGBA } from "./utils";
 import Vec2 from "./Vec2";
 
 /**
@@ -96,14 +95,14 @@ export default class Lamp extends Light {
    * @example
    * ```typescript
    * new Lamp({
-   *  position: new Vec2(12, 34),
-   *  distance: 100,
-   *  diffuse: 0.8,
-   *  color: "rgba(250,220,150,0.8)",
-   *  radius: 0,
-   *  samples: 1,
-   *  angle: 0,
-   *  roughness: 0
+   *   position: new Vec2(12, 34),
+   *   distance: 100,
+   *   diffuse: 0.8,
+   *   color: "rgba(250,220,150,0.8)",
+   *   radius: 0,
+   *   samples: 1,
+   *   angle: 0,
+   *   roughness: 0
    * })
    * ```
    *
