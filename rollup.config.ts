@@ -40,12 +40,12 @@ export default [
           "@babel/plugin-transform-block-scoping"
         ]
       }),
+      terser(),
       esbuild({
         target,
         minify: true,
         sourceMap: sourcemap
-      }),
-      terser()
+      })
     ]
   },
   {
