@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: yarn install --immutable
+      - run: yarn install --immutable --immutable-cache --check-cache
       - run: yarn build
       - run: yarn lint
       - run: yarn test
@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: yarn install --immutable
+      - run: yarn install --immutable --immutable-cache --check-cache
       - run: yarn build
       - run: npm publish --access public
         env:
@@ -43,7 +43,7 @@ jobs:
   #         node-version: 12
   #         registry-url: https://npm.pkg.github.com/
   #         scope: "@lemueldls"
-  #     - run: yarn install --immutable
+  #     - run: yarn install --immutable --immutable-cache --check-cache
   #     - run: echo registry=https://npm.pkg.github.com/lemueldls >> .npmrc
   #     - run: yarn build
   #     - run: yarn npm publish
