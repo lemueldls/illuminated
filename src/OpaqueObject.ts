@@ -26,7 +26,7 @@ export default class OpaqueObject {
    * @type {number}
    * @default 0.8
    */
-  public diffuse = 0.8;
+  public diffuse: number;
 
   /**
    * @constructor
@@ -36,7 +36,7 @@ export default class OpaqueObject {
   public constructor(options: OpaqueObjectOptions = {}) {
     const { diffuse } = options;
 
-    this.diffuse = diffuse ?? this.diffuse;
+    this.diffuse = diffuse ?? 0.8;
   }
 
   /**
@@ -53,31 +53,33 @@ export default class OpaqueObject {
    * Fill ctx with the shadows projected by this opaque object at the origin point,
    * constrained by the given bounds.
    *
-   * @param {CanvasRenderingContext2D} _ctx - The canvas context onto which the shadows will be cast.
+   * @param {CanvasRenderingContext2D} _context -The canvas context onto which the shadows will be cast.
    * @param {Vec2} _origin - A vector that represents the origin for the casted shadows.
    * @param {Bounds} _bounds - An anonymous object with the properties `topleft` and `bottomright`.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public cast(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _ctx: CanvasRenderingContext2D,
+    _context: CanvasRenderingContext2D,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _origin: Vec2,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _bounds: Bounds
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-  ): void {}
+  ): void {
+    //
+  }
 
   /**
    * Draw the path of the polygon onto the ctx.
    *
-   * @param {CanvasRenderingContext2D} _ctx - The context onto which the path will be drawn.
+   * @param {CanvasRenderingContext2D} _context -The context onto which the path will be drawn.
    */
   public path(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _ctx: CanvasRenderingContext2D
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-  ): void {}
+    _context: CanvasRenderingContext2D
+  ): void {
+    //
+  }
 
   /**
    * Determine if the given point is inside the polygon.

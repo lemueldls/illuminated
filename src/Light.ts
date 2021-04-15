@@ -25,7 +25,7 @@ export default class Light {
    * @type {Vec2}
    * @default new Vec2()
    */
-  public position: Vec2 = new Vec2();
+  public position: Vec2;
 
   /**
    * Intensity of this light.
@@ -33,7 +33,7 @@ export default class Light {
    * @type {number}
    * @default 100
    */
-  public distance = 100;
+  public distance: number;
 
   /**
    * How diffuse this light is.
@@ -41,7 +41,7 @@ export default class Light {
    * @type {number}
    * @default 0.8
    */
-  public diffuse = 0.8;
+  public diffuse: number;
 
   /** @type {number} */
   protected id!: number;
@@ -65,35 +65,34 @@ export default class Light {
   public constructor(options: LightOptions = {}) {
     const { position, distance, diffuse } = options;
 
-    this.position = position ?? this.position;
-    this.distance = distance ?? this.distance;
-    this.diffuse = diffuse ?? this.diffuse;
+    this.position = position ?? new Vec2();
+    this.distance = distance ?? 100;
+    this.diffuse = diffuse ?? 0.8;
   }
 
   /**
    * Render the light onto the given context.
    *
-   * @param {CanvasRenderingContext2D} _ctx - The canvas context onto which the light will be rendered.
+   * @param {CanvasRenderingContext2D} _context -The canvas context onto which the light will be rendered.
    */
   public render(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _ctx: CanvasRenderingContext2D
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-  ): void {}
+    _context: CanvasRenderingContext2D
+  ): void {
+    //
+  }
 
   /**
    * Render a mask representing the visibility. (Used by {@linkcode DarkMask}.)
    *
-   * @param {CanvasRenderingContext2D} ctx - The canvas context onto which the mask will be rendered.
+   * @param {CanvasRenderingContext2D} context -The canvas context onto which the mask will be rendered.
    */
-  public mask(ctx: CanvasRenderingContext2D): void {
+  public mask(context: CanvasRenderingContext2D): void {
     const c = this.getVisibleMaskCache();
 
-    ctx.drawImage(
-      c.canvas,
-      Math.round(this.position.x - c.w / 2),
-      Math.round(this.position.y - c.h / 2)
-    );
+    const { x, y } = this.position;
+
+    context.drawImage(c.canvas, Math.round(x - c.w / 2), Math.round(y - c.h / 2));
   }
 
   /**
@@ -103,9 +102,13 @@ export default class Light {
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public bounds(): Bounds {
+    const { position, distance } = this;
+
+    const { x, y } = position;
+
     return {
-      topleft: new Vec2(this.position.x - this.distance, this.position.y - this.distance),
-      bottomright: new Vec2(this.position.x + this.distance, this.position.y + this.distance)
+      topleft: new Vec2(x - distance, y - distance),
+      bottomright: new Vec2(x + distance, y + distance)
     };
   }
 
@@ -116,7 +119,9 @@ export default class Light {
    * @return {Vec2} A new vector that represents the center of this light.
    */
   public center(): Vec2 {
-    return new Vec2(this.distance, this.distance);
+    const { distance } = this;
+
+    return new Vec2(distance, distance);
   }
 
   /**
@@ -150,12 +155,15 @@ export default class Light {
       this.#vismaskhash = hash;
       this.#vismaskcache = createCanvasAnd2dContext(`vm${this.id}`, 2 * d, 2 * d);
 
-      const c = this.#vismaskcache;
-      const g = c.ctx.createRadialGradient(d, d, 0, d, d, d);
+      const { ctx, w, h } = this.#vismaskcache;
+
+      const g = ctx.createRadialGradient(d, d, 0, d, d, d);
+
       g.addColorStop(0, "rgba(0,0,0,1)");
       g.addColorStop(1, "rgba(0,0,0,0)");
-      c.ctx.fillStyle = g;
-      c.ctx.fillRect(0, 0, c.w, c.h);
+
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
     }
 
     return this.#vismaskcache;

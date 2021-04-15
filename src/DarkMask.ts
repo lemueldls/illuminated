@@ -25,7 +25,7 @@ export default class DarkMask {
    * @type {Light[]}
    * @default []
    */
-  public lights: Light[] = [];
+  public lights: Light[];
 
   /**
    * The color of the dark area in RGBA format.
@@ -33,7 +33,7 @@ export default class DarkMask {
    * @type {string}
    * @default "rgba(0,0,0,0.9)"
    */
-  public color = "rgba(0,0,0,0.9)";
+  public color: string;
 
   /** @type {CanvasAndContext} */
   #cache!: CanvasAndContext;
@@ -48,38 +48,43 @@ export default class DarkMask {
   public constructor(options: DarkMaskOptions = {}) {
     const { lights, color } = options;
 
-    this.lights = lights ?? this.lights;
-    this.color = color ?? this.color;
+    this.lights = lights ?? [];
+    this.color = color ?? "rgba(0,0,0,0.9)";
   }
 
   /**
    * Compute the dark mask.
    *
-   * @param {number} w - Width of the canvas context.
-   * @param {number} h - Height of the canvas context.
+   * @param {number} width - Width of the canvas context.
+   * @param {number} height - Height of the canvas context.
    */
-  compute(w: number, h: number): void {
-    if (!this.#cache || this.#cache.w !== w || this.#cache.h !== h)
-      this.#cache = createCanvasAnd2dContext("dm", w, h);
+  compute(width: number, height: number): void {
+    if (!this.#cache || this.#cache.w !== width || this.#cache.h !== height)
+      this.#cache = createCanvasAnd2dContext("dm", width, height);
 
     const { ctx } = this.#cache;
 
     ctx.save();
-    ctx.clearRect(0, 0, w, h);
+
+    ctx.clearRect(0, 0, width, height);
+
     ctx.fillStyle = this.color;
-    ctx.fillRect(0, 0, w, h);
+    ctx.fillRect(0, 0, width, height);
+
     ctx.globalCompositeOperation = "destination-out";
-    this.lights.forEach((light) => light.mask(ctx));
+
+    for (const light of this.lights) light.mask(ctx);
+
     ctx.restore();
   }
 
   /**
    * Draws the dark mask onto the given context.
    *
-   * @param {CanvasRenderingContext2D} ctx - The canvas context on which to draw.
+   * @param {CanvasRenderingContext2D} context - The canvas context on which to draw.
    */
-  render(ctx: CanvasRenderingContext2D): void {
-    ctx.drawImage(this.#cache.canvas, 0, 0);
+  render(context: CanvasRenderingContext2D): void {
+    context.drawImage(this.#cache.canvas, 0, 0);
   }
 
   /**

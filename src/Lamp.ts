@@ -37,7 +37,7 @@ export default class Lamp extends Light {
    * @type {number}
    * @default 0
    */
-  public id = 0;
+  public id: number;
 
   /**
    * The color emitted by the lamp. The color can be specified in any CSS format.
@@ -45,7 +45,7 @@ export default class Lamp extends Light {
    * @type {string}
    * @default "rgba(250,220,150,0.8)"
    */
-  public color = "rgba(250,220,150,0.8)";
+  public color: string;
 
   /**
    * The size of the lamp. Bigger lamps cast smoother shadows.
@@ -53,7 +53,7 @@ export default class Lamp extends Light {
    * @type {number}
    * @default 0
    */
-  public radius = 0;
+  public radius: number;
 
   /**
    * The number of points which will be used for shadow projection.
@@ -62,7 +62,7 @@ export default class Lamp extends Light {
    * @type {number}
    * @default 1
    */
-  public samples = 1;
+  public samples: number;
 
   /**
    * The angle of the orientation of the lamp.
@@ -70,7 +70,7 @@ export default class Lamp extends Light {
    * @type {number}
    * @default 0
    */
-  public angle = 0;
+  public angle: number;
 
   /**
    * The roughness of the oriented effect.
@@ -78,7 +78,7 @@ export default class Lamp extends Light {
    * @type {number}
    * @default 0
    */
-  public roughness = 0;
+  public roughness: number;
 
   /** @type {number} */
   #uniqueId = 0;
@@ -124,12 +124,12 @@ export default class Lamp extends Light {
 
     const { id, color, radius, samples, angle, roughness } = options;
 
-    this.id = id ?? this.id;
-    this.color = color ?? this.color;
-    this.radius = radius ?? this.radius;
-    this.samples = samples ?? this.samples;
-    this.angle = angle ?? this.angle;
-    this.roughness = roughness ?? this.roughness;
+    this.id = id ?? 0;
+    this.color = color ?? "rgba(250,220,150,0.8)";
+    this.radius = radius ?? 0;
+    this.samples = samples ?? 1;
+    this.angle = angle ?? 0;
+    this.roughness = roughness ?? 0;
 
     if (this.id === 0) this.id = ++this.#uniqueId;
   }
@@ -158,9 +158,11 @@ export default class Lamp extends Light {
    * @return {Vec2} A new vector that represents the center of this lamp.
    */
   public center(): Vec2 {
+    const { angle, roughness, distance } = this;
+
     return new Vec2(
-      (1 - Math.cos(this.angle) * this.roughness) * this.distance,
-      (1 + Math.sin(this.angle) * this.roughness) * this.distance
+      (1 - Math.cos(angle) * roughness) * distance,
+      (1 + Math.sin(angle) * roughness) * distance
     );
   }
 
@@ -171,37 +173,31 @@ export default class Lamp extends Light {
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public bounds(): Bounds {
-    const orientationCenter = new Vec2(Math.cos(this.angle), -Math.sin(this.angle)).mul(
-      this.roughness * this.distance
-    );
+    const { angle, roughness, distance, position } = this;
+
+    const { x, y } = new Vec2(Math.cos(angle), -Math.sin(angle)).mul(roughness * distance);
 
     return {
-      topleft: new Vec2(
-        this.position.x + orientationCenter.x - this.distance,
-        this.position.y + orientationCenter.y - this.distance
-      ),
-      bottomright: new Vec2(
-        this.position.x + orientationCenter.x + this.distance,
-        this.position.y + orientationCenter.y + this.distance
-      )
+      topleft: new Vec2(position.x + x - distance, position.y + y - distance),
+      bottomright: new Vec2(position.x + x + distance, position.y + y + distance)
     };
   }
 
   /**
    * Render a mask representing the visibility. (Used by {@linkcode DarkMask}.)
    *
-   * @param {CanvasRenderingContext2D} ctx - The canvas context onto which the mask will be rendered.
+   * @param {CanvasRenderingContext2D} context - The canvas context onto which the mask will be rendered.
    */
-  public mask(ctx: CanvasRenderingContext2D): void {
-    const c = this.getVisibleMaskCache();
-    const orientationCenter = new Vec2(Math.cos(this.angle), -Math.sin(this.angle)).mul(
-      this.roughness * this.distance
-    );
+  public mask(context: CanvasRenderingContext2D): void {
+    const { angle, roughness, distance, position } = this;
 
-    ctx.drawImage(
-      c.canvas,
-      Math.round(this.position.x + orientationCenter.x - c.w / 2),
-      Math.round(this.position.y + orientationCenter.y - c.h / 2)
+    const { canvas, w, h } = this.getVisibleMaskCache();
+    const { x, y } = new Vec2(Math.cos(angle), -Math.sin(angle)).mul(roughness * distance);
+
+    context.drawImage(
+      canvas,
+      Math.round(position.x + x - w / 2),
+      Math.round(position.y + y - h / 2)
     );
   }
 
@@ -218,15 +214,22 @@ export default class Lamp extends Light {
 
     this.#cacheHashcode = hashcode;
 
-    const d = Math.round(this.distance);
-    const D = d * 2;
-    const cache = createCanvasAnd2dContext(`gc${this.id}`, D, D);
-    const g = cache.ctx.createRadialGradient(center.x, center.y, 0, d, d, d);
+    const { distance, id, radius, color } = this;
 
-    g.addColorStop(Math.min(1, this.radius / this.distance), this.color);
-    g.addColorStop(1, getRGBA(this.color, 0));
-    cache.ctx.fillStyle = g;
-    cache.ctx.fillRect(0, 0, cache.w, cache.h);
+    const d = Math.round(distance);
+    const D = d * 2;
+
+    const cache = createCanvasAnd2dContext(`gc${id}`, D, D);
+    const { ctx, w, h } = cache;
+
+    const g = ctx.createRadialGradient(center.x, center.y, 0, d, d, d);
+
+    g.addColorStop(Math.min(1, radius / distance), color);
+    g.addColorStop(1, getRGBA(color, 0));
+
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+
     this.#gcache = cache;
 
     return cache;
@@ -235,17 +238,15 @@ export default class Lamp extends Light {
   /**
    * Render the lamp onto the given context (without any shadows).
    *
-   * @param {CanvasRenderingContext2D} ctx - The canvas context onto which the light will be rendered.
+   * @param {CanvasRenderingContext2D} context -The canvas context onto which the light will be rendered.
    */
-  public render(ctx: CanvasRenderingContext2D): void {
-    const center = this.center();
-    const c = this.getGradientCache(center);
+  public render(context: CanvasRenderingContext2D): void {
+    const { x, y } = this.position;
 
-    ctx.drawImage(
-      c.canvas,
-      Math.round(this.position.x - center.x),
-      Math.round(this.position.y - center.y)
-    );
+    const center = this.center();
+    const { canvas } = this.getGradientCache(center);
+
+    context.drawImage(canvas, Math.round(x - center.x), Math.round(y - center.y));
   }
 
   /**
@@ -260,12 +261,16 @@ export default class Lamp extends Light {
    * The function will be passed a vector representing the position of the sample.
    */
   public forEachSample(f: (v: Vec2) => void): void {
+    const { samples, radius, position } = this;
+
     // "spiral" algorithm for spreading emit samples
-    for (let s = 0, l = this.samples; s < l; ++s) {
+    for (let s = 0, l = samples; s < l; ++s) {
       const a = s * GOLDEN_ANGLE;
-      const r = Math.sqrt(s / this.samples) * this.radius;
+      const r = Math.sqrt(s / samples) * radius;
+
       const delta = new Vec2(Math.cos(a) * r, Math.sin(a) * r);
-      f(this.position.add(delta));
+
+      f(position.add(delta));
     }
   }
 }

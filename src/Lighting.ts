@@ -26,7 +26,7 @@ export default class Lighting {
    * @type {Light}
    * @default new Light()
    */
-  public light: Light = new Light();
+  public light: Light;
 
   /**
    * An array of {@linkcode OpaqueObject} objects which stop the light and create shadows.
@@ -34,7 +34,7 @@ export default class Lighting {
    * @type {OpaqueObject[]}
    * @default []
    */
-  public objects: OpaqueObject[] = [];
+  public objects: OpaqueObject[];
 
   /** @type {CanvasAndContext} */
   #cache!: CanvasAndContext;
@@ -52,8 +52,8 @@ export default class Lighting {
   public constructor(options: LightingOptions = {}) {
     const { light, objects } = options;
 
-    this.light = light ?? this.light;
-    this.objects = objects ?? this.objects;
+    this.light = light ?? new Light();
+    this.objects = objects ?? [];
   }
 
   /**
@@ -77,12 +77,11 @@ export default class Lighting {
     if (!this.#cache || this.#cache.w !== w || this.#cache.h !== h) this.createCache(w, h);
 
     const { ctx } = this.#cache;
-    const { light } = this;
 
     ctx.save();
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-    light.render(ctx);
+    this.light.render(ctx);
     ctx.globalCompositeOperation = "destination-out";
 
     this.cast(ctx);
@@ -96,41 +95,35 @@ export default class Lighting {
    * @param {CanvasRenderingContext2D} ctxoutput - The canvas context onto which the shadows will be drawn.
    */
   cast(ctxoutput: CanvasRenderingContext2D): void {
+    const { ctx, w, h, canvas } = this.#castcache;
+
     const { light } = this;
 
     const n = light.samples;
-    const c = this.#castcache;
-    const { ctx } = c;
 
-    ctx.clearRect(0, 0, c.w, c.h);
+    ctx.clearRect(0, 0, w, h);
     // Draw shadows for each light sample and objects
     ctx.fillStyle = `rgba(0,0,0,${Math.round(100 / n) / 100})`; // Is there any better way?
 
     const bounds = light.bounds();
+    const { topleft, bottomright } = bounds;
+
     const { objects } = this;
 
     light.forEachSample((position) => {
       // const sampleInObject = false;
 
-      for (let o = 0, l = objects.length; o < l; ++o) {
+      for (let o = 0, l = objects.length; o < l; ++o)
         if (objects[o].contains(position)) {
-          ctx.fillRect(
-            bounds.topleft.x,
-            bounds.topleft.y,
-            bounds.bottomright.x - bounds.topleft.x,
-            bounds.bottomright.y - bounds.topleft.y
-          );
+          ctx.fillRect(topleft.x, topleft.y, bottomright.x - topleft.x, bottomright.y - topleft.y);
           return;
         }
-      }
 
-      objects.forEach((object) => {
-        object.cast(ctx, position, bounds);
-      });
+      for (const object of objects) object.cast(ctx, position, bounds);
     });
 
     // Draw objects diffuse - the intensity of the light penetration in objects
-    objects.forEach((object) => {
+    for (const object of objects) {
       let { diffuse } = object;
       diffuse *= light.diffuse;
 
@@ -139,18 +132,18 @@ export default class Lighting {
 
       object.path(ctx);
       ctx.fill();
-    });
+    }
 
-    ctxoutput.drawImage(c.canvas, 0, 0);
+    ctxoutput.drawImage(canvas, 0, 0);
   }
 
   /**
    * Draws the light and shadows onto the given context.
    *
-   * @param {CanvasRenderingContext2D} ctx - The canvas context on which to draw.
+   * @param {CanvasRenderingContext2D} context -The canvas context on which to draw.
    */
-  public render(ctx: CanvasRenderingContext2D): void {
-    ctx.drawImage(this.#cache.canvas, 0, 0);
+  public render(context: CanvasRenderingContext2D): void {
+    context.drawImage(this.#cache.canvas, 0, 0);
   }
 
   /**

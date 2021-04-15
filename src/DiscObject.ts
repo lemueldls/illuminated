@@ -28,7 +28,7 @@ export default class DiscObject extends OpaqueObject {
    * @type {Vec2}
    * @default new Vec2()
    */
-  public center: Vec2 = new Vec2();
+  public center: Vec2;
 
   /**
    * Size of the disc object.
@@ -36,7 +36,7 @@ export default class DiscObject extends OpaqueObject {
    * @type {number}
    * @default 20
    */
-  public radius = 20;
+  public radius: number;
 
   /**
    * @constructor
@@ -50,65 +50,74 @@ export default class DiscObject extends OpaqueObject {
 
     const { center, radius } = options;
 
-    this.center = center ?? this.center;
-    this.radius = radius ?? this.radius;
+    this.center = center ?? new Vec2();
+    this.radius = radius ?? 20;
   }
 
   /**
-   * Fill ctx with the shadows projected by this disc object from the origin
+   * Fill context with the shadows projected by this disc object from the origin
    * point, constrained by the given bounds.
    *
-   * @param {CanvasRenderingContext2D} ctx - The canvas context onto which the shadows will be cast.
+   * @param {CanvasRenderingContext2D} context - The canvas context onto which the shadows will be cast.
    * @param {Vec2} origin - A vector that represents the origin for the casted shadows.
    * @param {Bounds} bounds - An anonymous object with the properties `topleft` and `bottomright`.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
-  public cast(ctx: CanvasRenderingContext2D, origin: Vec2, bounds: Bounds): void {
-    const m = this.center;
-    let originToM = m.sub(origin);
+  public cast(context: CanvasRenderingContext2D, origin: Vec2, bounds: Bounds): void {
+    const { center, radius } = this;
+
+    let originToM = center.sub(origin);
 
     // FIXED: this method was wrong... TODO must see http://en.wikipedia.org/wiki/Tangent_lines_to_circles
-    // const d = new Vec2(originToM.y, -originToM.x).normalize().mul(this.radius);
+    // const d = new Vec2(originToM.y, -originToM.x).normalize().mul(radius);
 
-    // const a = this.center.add(d);
-    // const b = this.center.add(d.inv());
+    // const a = center.add(d);
+    // const b = center.add(d.inv());
 
     // let originToA = a.sub(origin);
     // let originToB = b.sub(origin);
 
-    const tangentLines = getTan2(this.radius, originToM);
-    let originToA = tangentLines[0];
-    let originToB = tangentLines[1];
+    const tangentLines = getTan2(radius, originToM);
+
+    let [originToA, originToB] = tangentLines;
+
     const a = originToA.add(origin);
     const b = originToB.add(origin);
 
-    // normalize to distance
-    const distance =
-      (bounds.bottomright.x - bounds.topleft.x + (bounds.bottomright.y - bounds.topleft.y)) / 2;
+    const { bottomright, topleft } = bounds;
+
+    // Normalize to distance
+    const distance = (bottomright.x - topleft.x + (bottomright.y - topleft.y)) / 2;
+
     originToM = originToM.normalize().mul(distance);
     originToA = originToA.normalize().mul(distance);
     originToB = originToB.normalize().mul(distance);
 
-    // project points
+    // Project points
     const oam = a.add(originToM);
     const obm = b.add(originToM);
     const ap = a.add(originToA);
     const bp = b.add(originToB);
 
     const start = Math.atan2(originToM.x, -originToM.y);
-    ctx.beginPath();
-    path(ctx, [b, bp, obm, oam, ap, a], true);
-    ctx.arc(m.x, m.y, this.radius, start, start + Math.PI);
-    ctx.fill();
+
+    context.beginPath();
+
+    path(context, [b, bp, obm, oam, ap, a], true);
+
+    context.arc(center.x, center.y, radius, start, start + Math.PI);
+    context.fill();
   }
 
   /**
-   * Draw the path of the disc onto the ctx.
+   * Draw the path of the disc onto the context.
    *
-   * @param {CanvasRenderingContext2D} ctx - The context onto which the path will be drawn.
+   * @param {CanvasRenderingContext2D} context - The context onto which the path will be drawn.
    */
-  public path(ctx: CanvasRenderingContext2D): void {
-    ctx.arc(this.center.x, this.center.y, this.radius, 0, _2PI);
+  public path(context: CanvasRenderingContext2D): void {
+    const { center, radius } = this;
+
+    context.arc(center.x, center.y, radius, 0, _2PI);
   }
 
   /**
@@ -118,9 +127,11 @@ export default class DiscObject extends OpaqueObject {
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public bounds(): Bounds {
+    const { center, radius } = this;
+
     return {
-      topleft: new Vec2(this.center.x - this.radius, this.center.y - this.radius),
-      bottomright: new Vec2(this.center.x + this.radius, this.center.y + this.radius)
+      topleft: new Vec2(center.x - radius, center.y - radius),
+      bottomright: new Vec2(center.x + radius, center.y + radius)
     };
   }
 
@@ -131,6 +142,8 @@ export default class DiscObject extends OpaqueObject {
    * @return {boolean} True if the disc object contains the given point.
    */
   public contains(point: Vec2): boolean {
-    return point.dist2(this.center) < this.radius * this.radius;
+    const { center, radius } = this;
+
+    return point.dist2(center) < radius * radius;
   }
 }

@@ -8,6 +8,8 @@
     "target": "es2016",
     "outDir": "dist",
     "rootDir": "src",
+    "noImplicitAny": true,
+    "strictNullChecks": true,
     "sourceMap": true,
     "declaration": true,
     "esModuleInterop": true,

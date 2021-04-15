@@ -27,7 +27,7 @@ export default class LineObject extends PolygonObject {
    * @type {Vec2}
    * @default new Vec2()
    */
-  public a: Vec2 = new Vec2();
+  public a: Vec2;
 
   /**
    * A vector that is the last point of the line.
@@ -35,7 +35,7 @@ export default class LineObject extends PolygonObject {
    * @type {Vec2}
    * @default new Vec2()
    */
-  public b: Vec2 = new Vec2();
+  public b: Vec2;
 
   /**
    * @constructor
@@ -50,8 +50,8 @@ export default class LineObject extends PolygonObject {
 
     const { a, b } = options;
 
-    this.a = a ?? this.a;
-    this.b = b ?? this.b;
+    this.a = a ?? new Vec2();
+    this.b = b ?? new Vec2();
 
     this.syncFromAB();
   }

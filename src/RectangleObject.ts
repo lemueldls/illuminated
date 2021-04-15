@@ -26,7 +26,7 @@ export default class RectangleObject extends PolygonObject {
    * @type {Vec2}
    * @default new Vec2()
    */
-  public topleft: Vec2 = new Vec2();
+  public topleft: Vec2;
 
   /**
    * A vector that is the bottom-right of the rectangle.
@@ -34,7 +34,7 @@ export default class RectangleObject extends PolygonObject {
    * @type {Vec2}
    * @default new Vec2()
    */
-  public bottomright: Vec2 = new Vec2();
+  public bottomright: Vec2;
 
   /**
    * @constructor
@@ -48,8 +48,8 @@ export default class RectangleObject extends PolygonObject {
 
     const { topleft, bottomright } = options;
 
-    this.topleft = topleft ?? this.topleft;
-    this.bottomright = bottomright ?? this.bottomright;
+    this.topleft = topleft ?? new Vec2();
+    this.bottomright = bottomright ?? new Vec2();
 
     this.syncFromTopleftBottomright();
   }
@@ -58,22 +58,22 @@ export default class RectangleObject extends PolygonObject {
    * Initializes the points defining this rectangle based on its specified bounds.
    */
   private syncFromTopleftBottomright(): void {
-    const a = this.topleft;
-    const b = new Vec2(this.bottomright.x, this.topleft.y);
-    const c = this.bottomright;
-    const d = new Vec2(this.topleft.x, this.bottomright.y);
+    const { topleft, bottomright } = this;
 
-    this.points = [a, b, c, d];
+    const topright = new Vec2(bottomright.x, topleft.y);
+    const bottomleft = new Vec2(topleft.x, bottomright.y);
+
+    this.points = [topleft, topright, bottomright, bottomleft];
   }
 
   /**
    * Draws this rectangle onto the given context
    *
-   * @param {CanvasRenderingContext2D} ctx - The canvas context onto which the rectangle should be drawn.
+   * @param {CanvasRenderingContext2D} context -The canvas context onto which the rectangle should be drawn.
    */
-  public fill(ctx: CanvasRenderingContext2D): void {
-    const { x, y } = this.points[0];
+  public fill(context: CanvasRenderingContext2D): void {
+    const [{ x: x1, y: y1 }, , { x: x2, y: y2 }] = this.points;
 
-    ctx.rect(x, y, this.points[2].x - x, this.points[2].y - y);
+    context.rect(x1, y1, x2 - x1, y2 - y1);
   }
 }

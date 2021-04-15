@@ -26,7 +26,7 @@ export default class PolygonObject extends OpaqueObject {
    * @type {Vec2[]}
    * @default []
    */
-  public points: Vec2[] = [];
+  public points: Vec2[];
 
   /**
    * @constructor
@@ -39,7 +39,7 @@ export default class PolygonObject extends OpaqueObject {
 
     const { points } = options;
 
-    this.points = points ?? this.points;
+    this.points = points ?? [];
   }
 
   /**
@@ -49,19 +49,21 @@ export default class PolygonObject extends OpaqueObject {
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public bounds(): Bounds {
-    const first = this.points[0];
+    const [first] = this.points;
     if (!first) throw new Error("There are no points to calculate the boundaries of.");
 
     const topleft = first.copy();
     const bottomright = topleft.copy();
 
     for (let p = 1, l = this.points.length; p < l; ++p) {
-      const point = this.points[p];
-      if (point.x > bottomright.x) bottomright.x = point.x;
-      if (point.y > bottomright.y) bottomright.y = point.y;
-      if (point.x < topleft.x) topleft.x = point.x;
-      if (point.y < topleft.y) topleft.y = point.y;
+      const { x, y } = this.points[p];
+
+      if (x > bottomright.x) bottomright.x = x;
+      if (y > bottomright.y) bottomright.y = y;
+      if (x < topleft.x) topleft.x = x;
+      if (y < topleft.y) topleft.y = y;
     }
+
     return { topleft, bottomright };
   }
 
@@ -73,73 +75,83 @@ export default class PolygonObject extends OpaqueObject {
    */
   public contains(point: Vec2): boolean {
     const { points } = this;
-    const l = points.length;
-    let j = l - 1;
-    const { x } = point;
-    const { y } = point;
+
+    const { length } = points;
+    let index = length - 1;
+
+    const { x, y } = point;
+
     let oddNodes = false;
 
-    for (let i = 0; i < l; i++) {
-      if (
-        ((points[i].y < y && points[j].y >= y) || (points[j].y < y && points[i].y >= y)) &&
-        (points[i].x <= x || points[j].x <= x)
-      ) {
-        if (
-          points[i].x +
-            ((y - points[i].y) / (points[j].y - points[i].y)) * (points[j].x - points[i].x) <
-          x
-        )
-          oddNodes = !oddNodes;
-      }
+    for (let index2 = 0; index2 < length; index2++) {
+      const { x: x1, y: y1 } = points[index];
+      const { x: x2, y: y2 } = points[index2];
 
-      j = i;
+      if (
+        ((y2 < y && y1 >= y) || (y1 < y && y2 >= y)) &&
+        (x2 <= x || x1 <= x) &&
+        x2 + ((y - y2) / (y1 - y2)) * (x1 - x2) < x
+      )
+        oddNodes = !oddNodes;
+
+      index = index2;
     }
+
     return oddNodes;
   }
 
   /**
    * Draw the path of the polygon onto the ctx.
    *
-   * @param {CanvasRenderingContext2D} ctx - The context onto which the path will be drawn.
+   * @param {CanvasRenderingContext2D} context -The context onto which the path will be drawn.
    */
-  public path(ctx: CanvasRenderingContext2D): void {
-    path(ctx, this.points);
+  public path(context: CanvasRenderingContext2D): void {
+    path(context, this.points);
   }
 
   /**
    * Fill ctx with the shadows projected by this polygon object from the origin point,
    * constrained by the given bounds.
    *
-   * @param {CanvasRenderingContext2D} ctx - The canvas context onto which the shadows will be cast.
+   * @param {CanvasRenderingContext2D} context -The canvas context onto which the shadows will be cast.
    * @param {Vec2} origin - A vector that represents the origin for the casted shadows.
    * @param {Bounds} bounds - An anonymous object with the properties topleft and bottomright.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
-  public cast(ctx: CanvasRenderingContext2D, origin: Vec2, bounds: Bounds): void {
+  public cast(context: CanvasRenderingContext2D, origin: Vec2, bounds: Bounds): void {
     // The current implementation of projection is a bit hacky... do you have a proper solution?
 
-    const distance =
-      (bounds.bottomright.x - bounds.topleft.x + (bounds.bottomright.y - bounds.topleft.y)) / 2;
+    const { bottomright, topleft } = bounds;
+
+    const distance = (bottomright.x - topleft.x + (bottomright.y - topleft.y)) / 2;
 
     this.forEachVisibleEdges(origin, bounds, (a, b, originToA, originToB, aToB) => {
-      let m; // m is the projected point of origin to [a, b]
+      /** The projected point of origin to [a, b] */
+      let m;
+
       const t = originToA.inv().dot(aToB) / aToB.length2();
+
       if (t < 0) m = a;
       else if (t > 1) m = b;
       else m = a.add(aToB.mul(t));
+
       let originToM = m.sub(origin);
-      // normalize to distance
+
+      // Normalize to distance
       originToM = originToM.normalize().mul(distance);
 
       // project points
       const oam = a.add(originToM);
       const obm = b.add(originToM);
+
       const ap = a.add(originToA.normalize().mul(distance));
       const bp = b.add(originToB.normalize().mul(distance));
 
-      ctx.beginPath();
-      path(ctx, [a, b, bp, obm, oam, ap]);
-      ctx.fill();
+      context.beginPath();
+
+      path(context, [a, b, bp, obm, oam, ap]);
+
+      context.fill();
     });
   }
 
@@ -165,16 +177,20 @@ export default class PolygonObject extends OpaqueObject {
     bounds: Bounds,
     f: (a: Vec2, b: Vec2, originToA: Vec2, originToB: Vec2, aToB: Vec2) => void
   ) {
-    let a = this.points[this.points.length - 1];
+    const { points } = this;
+
+    let a = points[points.length - 1];
     let b: Vec2;
 
-    for (let p = 0, l = this.points.length; p < l; ++p, a = b) {
-      b = this.points[p];
+    for (let p = 0, l = points.length; p < l; ++p, a = b) {
+      b = points[p];
 
       if (a.inBound(bounds.topleft, bounds.bottomright)) {
         const originToA = a.sub(origin);
         const originToB = b.sub(origin);
+
         const aToB = b.sub(a);
+
         const normal = new Vec2(aToB.y, -aToB.x);
 
         if (normal.dot(originToA) < 0) f(a, b, originToA, originToB, aToB);

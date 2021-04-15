@@ -2,5 +2,4 @@
 export const GOLDEN_ANGLE: number = Math.PI * (3 - Math.sqrt(5));
 
 /** @constant {number} */
-export const // eslint-disable-next-line no-underscore-dangle
-  _2PI: number = 2 * Math.PI;
+export const _2PI: number = 2 * Math.PI;
