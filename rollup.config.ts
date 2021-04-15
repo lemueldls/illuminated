@@ -35,10 +35,7 @@ export default [
     plugins: [
       getBabelOutputPlugin({
         allowAllFormats: true,
-        plugins: [
-          "@babel/plugin-transform-block-scoped-functions",
-          "@babel/plugin-transform-block-scoping"
-        ]
+        plugins: ["@babel/plugin-transform-block-scoping"]
       }),
       terser(),
       esbuild({

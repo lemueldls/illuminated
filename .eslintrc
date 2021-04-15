@@ -1,54 +1,28 @@
 {
   "env": {
-    "browser": true,
-    "es2020": true,
     "jest": true
   },
-  "plugins": ["prettier", "@typescript-eslint"],
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "airbnb",
-    "google",
-    "prettier",
-    "plugin:prettier/recommended"
-  ],
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module"
-  },
+  "extends": ["airbnb-base", "google", "@lemueldls"],
   "rules": {
+    "unicorn/filename-case": [
+      "error",
+      {
+        "cases": {
+          "camelCase": true,
+          "pascalCase": true
+        }
+      }
+    ],
+
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "no-useless-constructor": "off",
     "no-empty-function": "off",
     "class-methods-use-this": "off",
+    "no-underscore-dangle": "off",
     "import/no-extraneous-dependencies": "off",
-    "no-plusplus": "off",
-
-    "prettier/prettier": "warn",
-    "curly": ["warn", "multi-or-nest"],
-    "semi": ["warn", "always"],
-    "indent": [
-      "off",
-      2,
-      {
-        "SwitchCase": 1,
-        "flatTernaryExpressions": true
-      }
-    ],
-    "quotes": ["warn", "double", { "avoidEscape": true }]
+    "no-restricted-syntax": "off",
+    "no-plusplus": "off"
   },
-  "settings": {
-    "react": {
-      "version": "999.999.999"
-    }
-  },
-  "ignorePatterns": ["node_modules/", "dist/", "*.json"]
+  "ignorePatterns": ["dist"]
 }
