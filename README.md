@@ -21,4 +21,4 @@ like to change.
 
 ## Licence
 
-[LGPL-2.1](https://choosealicense.com/licenses/lgpl-2.1/)
+[LGPL-3.0](https://choosealicense.com/licenses/lgpl-3.0/)
