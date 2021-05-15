@@ -1,6 +1,6 @@
 {
   "name": "illuminated",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": "Lemuel De Los Santos",
   "description": "A modern TypeScript rewrite of the Illuminated.js library originally written by Gaëtan Renaudeau.",
   "type": "module",
