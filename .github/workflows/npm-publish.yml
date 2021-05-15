@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: yarn install --immutable --immutable-cache --check-cache
+      - run: yarn install --immutable # --immutable-cache --check-cache
       - run: yarn build
       - run: yarn lint
       - run: yarn test
@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: yarn install --immutable --immutable-cache --check-cache
+      - run: yarn install --immutable # --immutable-cache --check-cache
       - run: yarn build
       - run: npm publish --access public
         env:
