@@ -291,10 +291,10 @@ $RECYCLE.BIN/
 
 # if you are NOT using Zero-installs, then:
 # comment the following lines
-# !.yarn/cache
+!.yarn/cache
 
 # and uncomment the following lines
-.pnp.*
+# .pnp.*
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,linux,windows,macos,git,yarn,visualstudiocode,webstorm
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,linux,windows,macos,git,yarn,visualstudiocode,webstorms
