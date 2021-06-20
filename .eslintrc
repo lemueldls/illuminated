@@ -1,28 +1,23 @@
 {
+  "root": true,
   "env": {
     "jest": true
   },
   "extends": ["airbnb-base", "google", "@lemueldls"],
   "rules": {
-    "unicorn/filename-case": [
-      "error",
-      {
-        "cases": {
-          "camelCase": true,
-          "pascalCase": true
-        }
-      }
-    ],
+    "import/extensions": ["error", "never"],
 
-    "import/no-unresolved": "off",
-    "import/extensions": "off",
     "no-useless-constructor": "off",
     "no-empty-function": "off",
     "class-methods-use-this": "off",
     "no-underscore-dangle": "off",
-    "import/no-extraneous-dependencies": "off",
     "no-restricted-syntax": "off",
     "no-plusplus": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
   },
   "ignorePatterns": ["dist"]
 }

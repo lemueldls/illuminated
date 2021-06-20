@@ -121,9 +121,7 @@ export const getRGBA = (() => {
  * properties color and alpha. The color property is a string in hex format and
  * the alpha property is a number from 0.0 to 1.0, rounded to 3 decimal places.
  */
-export const extractColorAndAlpha: (
-  color: string
-) => {
+export const extractColorAndAlpha: (color: string) => {
   color: string;
   alpha: number;
 } = (() => {
