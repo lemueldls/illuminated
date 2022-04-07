@@ -12,8 +12,8 @@ it("should construct", () => {
     uniqueId: 0,
     diffuse: 0.8,
     points: [new Vec2(), new Vec2(), new Vec2(), new Vec2()],
-    topleft: new Vec2(),
-    bottomright: new Vec2()
+    topLeft: new Vec2(),
+    bottomRight: new Vec2()
   });
 });
 

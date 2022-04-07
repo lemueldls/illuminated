@@ -3,22 +3,6 @@
   "env": {
     "jest": true
   },
-  "extends": ["google", "@lemueldls"],
-  "rules": {
-    "import/extensions": "off",
-    "import/no-extraneous-dependencies": "off",
-
-    "no-useless-constructor": "off",
-    "no-empty-function": "off",
-    "class-methods-use-this": "off",
-    "no-underscore-dangle": "off",
-    "no-restricted-syntax": "off",
-    "no-plusplus": "off"
-  },
-  "settings": {
-    "import/resolver": {
-      "typescript": {}
-    }
-  },
+  "extends": "@lemueldls",
   "ignorePatterns": ["dist"]
 }

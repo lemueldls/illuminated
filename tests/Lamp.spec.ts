@@ -25,8 +25,8 @@ it("should get center", () => expect(l1.center()).toStrictEqual(new Vec2(100, 10
 
 it("should calculate bounds", () =>
   expect(l1.bounds()).toStrictEqual({
-    topleft: new Vec2(-100, -100),
-    bottomright: new Vec2(100, 100)
+    topLeft: new Vec2(-100, -100),
+    bottomRight: new Vec2(100, 100)
   }));
 
 it("should render mask", () => expect(l1.mask(ctx)).toBeUndefined());

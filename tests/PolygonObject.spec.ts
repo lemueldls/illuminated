@@ -53,7 +53,7 @@ it("should construct", () => {
 
 it("should calculate bounds", () => {
   expect(() => obj1.bounds()).toThrowError();
-  expect(obj2.bounds()).toStrictEqual({ topleft: new Vec2(-5, -8), bottomright: new Vec2(10, 9) });
+  expect(obj2.bounds()).toStrictEqual({ topLeft: new Vec2(-5, -8), bottomRight: new Vec2(10, 9) });
 });
 
 it("should not contain point", () => {

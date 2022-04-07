@@ -1,3 +1,5 @@
+import { defineConfig } from "rollup";
+
 import esbuild from "rollup-plugin-esbuild";
 import { terser } from "rollup-plugin-terser";
 import { getBabelOutputPlugin } from "@rollup/plugin-babel";
@@ -11,26 +13,13 @@ const input = "src/illuminated.ts";
 const sourcemap = true;
 const { target } = compilerOptions;
 
-export default [
+export default defineConfig([
   {
     input,
     output: [
-      {
-        file: main,
-        format: "cjs",
-        sourcemap
-      },
-      {
-        file: module,
-        format: "esm",
-        sourcemap
-      },
-      {
-        file: browser,
-        format: "umd",
-        name: "illuminated",
-        sourcemap
-      }
+      { file: main, format: "cjs", sourcemap },
+      { file: module, format: "esm", sourcemap },
+      { file: browser, format: "umd", sourcemap, name: "Illuminated" }
     ],
     plugins: [
       getBabelOutputPlugin({
@@ -40,20 +29,14 @@ export default [
       terser(),
       esbuild({
         target,
-        minify: true,
+        minify: false,
         sourceMap: sourcemap
       })
     ]
   },
   {
     input,
-    output: [
-      {
-        file: types,
-        format: "es",
-        sourcemap: false
-      }
-    ],
+    output: [{ file: types, format: "es" }],
     plugins: [dts()]
   }
-];
+]);

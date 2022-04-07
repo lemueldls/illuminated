@@ -1,37 +1,27 @@
-import { Bounds } from "./utils";
 import Vec2 from "./Vec2";
 
-/**
- * Options to be applied to this opaque object.
- *
- * @typedef {Object} OpaqueObjectOptions
- * @property {number} diffuse - How diffuse this opaque object should be.
- */
-export type OpaqueObjectOptions =
-  // eslint-disable-next-line no-use-before-define
-  Partial<Pick<OpaqueObject, "diffuse">>;
+import type { Bounds } from "./utils";
 
 /**
- * Class for opaque objects.
- *
- * @class OpaqueObject
+ * Options to be applied to the opaque object.
+ */
+export type OpaqueObjectOptions = Partial<Pick<OpaqueObject, "diffuse">>;
+
+/**
+ * An opaque object.
  */
 export default class OpaqueObject {
-  /** @type {number} */
   public uniqueId = 0;
 
   /**
-   * How diffuse this opaque object should be.
+   * How diffuse the opaque object should be.
    *
-   * @type {number}
    * @default 0.8
    */
   public diffuse: number;
 
   /**
-   * @constructor
-   * @param {OpaqueObjectOptions} [options={}] - Options to be applied to this opaque object.
-   * @param {number} [options.diffuse] - How diffuse this opaque object should be.
+   * @param options - Options to be applied to the opaque object.
    */
   public constructor(options: OpaqueObjectOptions = {}) {
     const { diffuse } = options;
@@ -40,22 +30,22 @@ export default class OpaqueObject {
   }
 
   /**
-   * Calculate the boundaries of this opaque object.
+   * Calculate the boundaries of the opaque object.
    *
-   * @return {Bounds} An anonymous object with the properties `topleft` and `bottomright`.
+   * @returns An anonymous object with the properties `topLeft` and `bottomRight`.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public bounds(): Bounds {
-    return { topleft: new Vec2(), bottomright: new Vec2() };
+    return { topLeft: new Vec2(), bottomRight: new Vec2() };
   }
 
   /**
-   * Fill ctx with the shadows projected by this opaque object at the origin point,
+   * Fill ctx with the shadows projected by the opaque object at the origin point,
    * constrained by the given bounds.
    *
-   * @param {CanvasRenderingContext2D} _context -The canvas context onto which the shadows will be cast.
-   * @param {Vec2} _origin - A vector that represents the origin for the casted shadows.
-   * @param {Bounds} _bounds - An anonymous object with the properties `topleft` and `bottomright`.
+   * @param _context - The canvas context onto which the shadows will be cast.
+   * @param _origin - A vector that represents the origin for the casted shadows.
+   * @param _bounds - An anonymous object with the properties `topLeft` and `bottomRight`.
    * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
    */
   public cast(
@@ -72,7 +62,7 @@ export default class OpaqueObject {
   /**
    * Draw the path of the polygon onto the ctx.
    *
-   * @param {CanvasRenderingContext2D} _context -The context onto which the path will be drawn.
+   * @param _context - The context onto which the path will be drawn.
    */
   public path(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -84,8 +74,8 @@ export default class OpaqueObject {
   /**
    * Determine if the given point is inside the polygon.
    *
-   * @param {Vec2} _point - The point to be checked.
-   * @return {boolean} True if the polygon object contains the given point.
+   * @param _point - The point to be checked.
+   * @returns `true` if the polygon object contains the given point.
    */
   public contains(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

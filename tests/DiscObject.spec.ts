@@ -20,8 +20,8 @@ it("should draw path", () => expect(obj.path(ctx)).toBeUndefined());
 
 it("should calculate bounds", () =>
   expect(obj.bounds()).toStrictEqual({
-    topleft: new Vec2(-20, -20),
-    bottomright: new Vec2(20, 20)
+    topLeft: new Vec2(-20, -20),
+    bottomRight: new Vec2(20, 20)
   }));
 
 it("should contain point", () => expect(obj.contains(new Vec2())).toBe(true));

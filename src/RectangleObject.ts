@@ -1,75 +1,61 @@
-import PolygonObject, { PolygonObjectOptions } from "./PolygonObject";
+import PolygonObject, { type PolygonObjectOptions } from "./PolygonObject";
 import Vec2 from "./Vec2";
 
 /**
- * Options to be applied to this rectangle object.
- *
- * @typedef RectangleObjectOptions
- * @property {number} [diffuse] - How diffuse this polygon object should be.
- * @property {Vec2} [topleft] - A vector that is the top-left of the rectangle.
- * @property {Vec2} [bottomright] - A vector that is the bottom-right of the rectangle.
+ * Options to be applied to the rectangle object.
  */
-export type RectangleObjectOptions =
-  // eslint-disable-next-line no-use-before-define
-  Partial<Pick<RectangleObject, "topleft" | "bottomright"> & PolygonObjectOptions>;
+export type RectangleObjectOptions = Partial<
+  Pick<RectangleObject, "topLeft" | "bottomRight"> & PolygonObjectOptions
+>;
 
 /**
  * A rectangular, opaque object.
- *
- * @class RectangleObject
- * @extends PolygonObject
  */
 export default class RectangleObject extends PolygonObject {
   /**
    * A vector that is the top-left of the rectangle.
    *
-   * @type {Vec2}
    * @default new Vec2()
    */
-  public topleft: Vec2;
+  public topLeft: Vec2;
 
   /**
    * A vector that is the bottom-right of the rectangle.
    *
-   * @type {Vec2}
    * @default new Vec2()
    */
-  public bottomright: Vec2;
+  public bottomRight: Vec2;
 
   /**
-   * @constructor
-   * @param {RectangleObjectOptions} [options={}] - Options to be applied to this rectangle object.
-   * @param {number} [options.diffuse] - How diffuse this polygon object should be.
-   * @param {Vec2} [options.topleft] - A vector that is the top-left of the rectangle.
-   * @param {Vec2} [options.bottomright] - A vector that is the bottom-right of the rectangle.
+   * @param options - Options to be applied to the rectangle object.
    */
   public constructor(options: RectangleObjectOptions = {}) {
     super(options);
 
-    const { topleft, bottomright } = options;
+    const { topLeft, bottomRight } = options;
 
-    this.topleft = topleft ?? new Vec2();
-    this.bottomright = bottomright ?? new Vec2();
+    this.topLeft = topLeft ?? new Vec2();
+    this.bottomRight = bottomRight ?? new Vec2();
 
     this.syncFromTopleftBottomright();
   }
 
   /**
-   * Initializes the points defining this rectangle based on its specified bounds.
+   * Initializes the points defining the rectangle based on its specified bounds.
    */
   private syncFromTopleftBottomright(): void {
-    const { topleft, bottomright } = this;
+    const { topLeft, bottomRight } = this;
 
-    const topright = new Vec2(bottomright.x, topleft.y);
-    const bottomleft = new Vec2(topleft.x, bottomright.y);
+    const topRight = new Vec2(bottomRight.x, topLeft.y);
+    const bottomLeft = new Vec2(topLeft.x, bottomRight.y);
 
-    this.points = [topleft, topright, bottomright, bottomleft];
+    this.points = [topLeft, topRight, bottomRight, bottomLeft];
   }
 
   /**
-   * Draws this rectangle onto the given context
+   * Draws the rectangle onto the given context
    *
-   * @param {CanvasRenderingContext2D} context -The canvas context onto which the rectangle should be drawn.
+   * @param context - The canvas context onto which the rectangle should be drawn.
    */
   public fill(context: CanvasRenderingContext2D): void {
     const [{ x: x1, y: y1 }, , { x: x2, y: y2 }] = this.points;

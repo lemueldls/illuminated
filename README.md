@@ -11,8 +11,7 @@
 
 [![NPM Package](https://nodei.co/npm/illuminated.png)](https://www.npmjs.com/package/illuminated)
 
-A modern TypeScript rewrite of the Illuminated.js &ndash; 2D lights and shadows rendering engine for
-HTML5 applications library originally written by [Gaëtan Renaudeau](https://github.com/gre).
+A 2D lights and shadows rendering engine for HTML5 applications and games.
 
 ## Contributing
 

@@ -1,28 +1,19 @@
-import Light from "./Light";
-import { CanvasAndContext, createCanvasAnd2dContext } from "./utils";
+import { createCanvasAnd2dContext, type CanvasAndContext } from "./utils";
+
+import type Light from "./Light";
 
 /**
- * Options to be applied to this light.
- *
- * @typedef {Object} DarkMaskOptions
- * @property {Light[]} [lights] - An array of [[`Light`]] objects
- * that illuminate the rest of the scene.
- * @property {string} [color] - The color of the dark area in RGBA format.
+ * Options to be applied to the dark mask object.
  */
-export type DarkMaskOptions =
-  // eslint-disable-next-line no-use-before-define
-  Partial<Pick<DarkMask, "lights" | "color">>;
+export type DarkMaskOptions = Partial<Pick<DarkMask, "lights" | "color">>;
 
 /**
  * Defines the dark layer which hides the dark area not illuminated by a set of lights.
- *
- * @class DarkMask
  */
 export default class DarkMask {
   /**
    * An array of {@linkcode Light} objects that illuminate the rest of the scene.
    *
-   * @type {Light[]}
    * @default []
    */
   public lights: Light[];
@@ -30,20 +21,14 @@ export default class DarkMask {
   /**
    * The color of the dark area in RGBA format.
    *
-   * @type {string}
    * @default "rgba(0,0,0,0.9)"
    */
   public color: string;
 
-  /** @type {CanvasAndContext} */
-  #cache!: CanvasAndContext;
+  #cache?: CanvasAndContext;
 
   /**
-   * @constructor
-   * @param {DarkMaskOptions} [options={}] - Options to be applied to this light.
-   * @param {Light[]} [options.lights] - An array of {@linkcode Light} objects
-   * that illuminate the rest of the scene.
-   * @param {string} [options.color] - The color of the dark area in RGBA format.
+   * @param options - Options to be applied to the dark mask object.
    */
   public constructor(options: DarkMaskOptions = {}) {
     const { lights, color } = options;
@@ -55,10 +40,10 @@ export default class DarkMask {
   /**
    * Compute the dark mask.
    *
-   * @param {number} width - Width of the canvas context.
-   * @param {number} height - Height of the canvas context.
+   * @param width - Width of the canvas context.
+   * @param height - Height of the canvas context.
    */
-  compute(width: number, height: number): void {
+  public compute(width: number, height: number): void {
     if (!this.#cache || this.#cache.w !== width || this.#cache.h !== height)
       this.#cache = createCanvasAnd2dContext("dm", width, height);
 
@@ -81,18 +66,18 @@ export default class DarkMask {
   /**
    * Draws the dark mask onto the given context.
    *
-   * @param {CanvasRenderingContext2D} context - The canvas context on which to draw.
+   * @param context - The canvas context on which to draw.
    */
-  render(context: CanvasRenderingContext2D): void {
-    context.drawImage(this.#cache.canvas, 0, 0);
+  public render(context: CanvasRenderingContext2D): void {
+    context.drawImage(this.#cache!.canvas, 0, 0);
   }
 
   /**
-   * Gives the dark mask back.
+   * Gives the dark mask's canvas back.
    *
-   * @return {HTMLCanvasElement} The canvas context.
+   * @returns The canvas element.
    */
-  getCanvas(): HTMLCanvasElement {
-    return this.#cache.canvas;
+  public getCanvas(): HTMLCanvasElement {
+    return this.#cache!.canvas;
   }
 }

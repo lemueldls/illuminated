@@ -10,8 +10,8 @@ it("should construct", () => expect(obj).toEqual({ diffuse: 0.8, uniqueId: 0 }))
 
 it("should calculate bounds", () =>
   expect(obj.bounds()).toStrictEqual({
-    topleft: new Vec2(0, 0),
-    bottomright: new Vec2(0, 0)
+    topLeft: new Vec2(0, 0),
+    bottomRight: new Vec2(0, 0)
   }));
 
 it("should cast no shadow", () => expect(obj.cast(ctx, new Vec2(), obj.bounds())).toBeUndefined());

@@ -18,8 +18,8 @@ it("should render mask", () => {
 
 it("should calculate bounds", () =>
   expect(light.bounds()).toStrictEqual({
-    topleft: new Vec2(-100, -100),
-    bottomright: new Vec2(100, 100)
+    topLeft: new Vec2(-100, -100),
+    bottomRight: new Vec2(100, 100)
   }));
 
 it("should get center", () => expect(light.center()).toStrictEqual(new Vec2(100, 100)));

@@ -1,16 +1,12 @@
 import Vec2 from "./Vec2";
 
 /**
- * Boundaries with the properties `topleft` and `bottomright`.
- * The property values are [[`Vec2`]] objects representing the corners of the boundary.
- *
- * @typedef {Object} Bounds
- * @property {Vec2} topleft
- * @property {Vec2} bottomright
+ * Boundaries with the properties `topLeft` and `bottomRight`.
+ * The property values are {@linkcode Vec2} objects representing the corners of the boundary.
  */
 export interface Bounds {
-  topleft: Vec2;
-  bottomright: Vec2;
+  topLeft: Vec2;
+  bottomRight: Vec2;
 }
 
 export interface CanvasAndContext {
@@ -23,10 +19,10 @@ export interface CanvasAndContext {
 /**
  * Creates a canvas and context with the given width and height.
  *
- * @param {string} id - ID name of the canvas context.
- * @param {number} width - Width of the canvas context.
- * @param {number} height - Height of the canvas context.
- * @return {CanvasAndContext} An anonymous object with {@linkcode CanvasAndContext.canvas canvas},
+ * @param id - ID name of the canvas context.
+ * @param width - Width of the canvas context.
+ * @param height - Height of the canvas context.
+ * @returns An anonymous object with {@linkcode CanvasAndContext.canvas canvas},
  * {@linkcode CanvasAndContext.ctx ctx}, {@linkcode CanvasAndContext.w w} and
  * {@linkcode CanvasAndContext.h h} properties.
  */
@@ -35,7 +31,7 @@ export function createCanvasAnd2dContext(
   width: number,
   height: number
 ): CanvasAndContext {
-  const iid = `illujs_${id}`;
+  const iid = `illuminated-${id}`;
   let canvas = document.querySelector<HTMLCanvasElement>(`#${iid}`);
 
   if (!canvas) {
@@ -61,38 +57,37 @@ export function createCanvasAnd2dContext(
 /**
  * Draw a path defined by the given points onto the given ctx.
  *
- * @param {CanvasRenderingContext2D} context -The context onto which the properties should be drawn.
- * @param {Vec2[]} points - An array of {@linkcode Vec2} objects that define the path.
- * @param {boolean} [dontJoinLast] - True if the last point should joined with the
- * first point in the path.
+ * @param context - The context onto which the properties should be drawn.
+ * @param points - An array of {@linkcode Vec2} objects that define the path.
+ * @param dontJoinLast - If the last point should joined with the first point in the path.
  */
 export function path(
   context: CanvasRenderingContext2D,
   points: Vec2[],
   dontJoinLast?: boolean
 ): void {
-  let [p] = points;
-  if (!p) throw new Error("There are no points to draw a path of.");
+  let [point] = points as [Vec2 | undefined];
+  if (!point) throw new Error("There are no points to draw a path of.");
 
-  context.moveTo(p.x, p.y);
+  context.moveTo(point.x, point.y);
 
   for (let index = 1, l = points.length; index < l; ++index) {
-    p = points[index];
-    context.lineTo(p.x, p.y);
+    point = points[index];
+    context.lineTo(point.x, point.y);
   }
 
   if (!dontJoinLast && points.length > 2) {
-    [p] = points;
-    context.lineTo(p.x, p.y);
+    [point] = points;
+    context.lineTo(point.x, point.y);
   }
 }
 
 /**
  * Converts a CSS color string into RGBA format.
  *
- * @param {string} color - Color in any CSS format.
- * @param {number} [alpha=1] - Alpha value for produced color.
- * @return {string} Color in RGBA format.
+ * @param color - Color in any CSS format.
+ * @param alpha - Alpha value for produced color.
+ * @returns Color in RGBA format.
  */
 export const getRGBA = (() => {
   const canvas = document.createElement("canvas");
@@ -116,8 +111,8 @@ export const getRGBA = (() => {
 /**
  * Converts a CSS color string into an anonymous object with color and alpha properties.
  *
- * @param {string} color - Color in any CSS format.
- * @return {{color: string, alpha: number}} An anonymous object with the
+ * @param color - Color in any CSS format.
+ * @returns} An anonymous object with the
  * properties color and alpha. The color property is a string in hex format and
  * the alpha property is a number from 0.0 to 1.0, rounded to 3 decimal places.
  */
@@ -133,8 +128,7 @@ export const extractColorAndAlpha: (color: string) => {
   const context = canvas.getContext("2d") as CanvasRenderingContext2D;
 
   /**
-   * @param {number} value
-   * @return {string}
+   * @param value
    */
   function toHex(value: number) {
     let s = value.toString(16);
@@ -160,10 +154,9 @@ export const extractColorAndAlpha: (color: string) => {
 /**
  * Get tangents from (0, 0) to circle of radius with given center, for {@linkcode DiscObject.cast}.
  *
- * @param {number} radius
- * @param {(Vec2|number)} center
- * @param {number} pointY
- * @return {Vec2[]}
+ * @param radius
+ * @param center
+ * @param pointY
  */
 export function getTan2(radius: number, center: Vec2 | number, pointY?: number): Vec2[] {
   const epsilon = 1e-6; // getTan2.epsilon
@@ -175,24 +168,17 @@ export function getTan2(radius: number, center: Vec2 | number, pointY?: number):
 
   const solutions = [];
 
-  // if (typeof a === "object" && typeof center === "number") {
-  //   const tmp = a;
-  //   center = a;
-  //   center = tmp; // swap
-  // }
   if (typeof center === "number") {
-    // getTan2(radius:number, x0:number, y0:number)
     x0 = center;
     y0 = pointY || 0;
     length2 = x0 * x0 + y0 * y0;
   } else {
-    // getTans2(radius:number, center:object={x:x0,y:y0})
     x0 = center.x;
     y0 = center.y;
     length2 = center.length2();
   }
 
-  // t = +/- Math.acos( (-a*x0 +/- y0 * Math.sqrt(x0*x0 + y0*y0 - a*a))/(x0*x0 + y0*y) );
+  // t = +/- Math.acos((-a * x0 +/- y0 * Math.sqrt(x0 * x0 + y0 * y0 - a * a)) / (x0 * x0 + y0 * y));
 
   const length2a = y0 * Math.sqrt(length2 - radius * radius);
 
@@ -204,7 +190,7 @@ export function getTan2(radius: number, center: Vec2 | number, pointY?: number):
   const ntCos = radius * Math.cos(nt);
   const ntSin = radius * Math.sin(nt);
 
-  // Note: cos(-t) == cos(t) and sin(-t) == -sin(t) for all t, so find
+  // NOTE: cos(-t) == cos(t) and sin(-t) == -sin(t) for all t, so find
   // x0 + a*cos(t), y0 +/- a*sin(t)
   // Solutions have equal lengths
   soln = new Vec2(x0 + ntCos, y0 + ntSin);
@@ -215,15 +201,11 @@ export function getTan2(radius: number, center: Vec2 | number, pointY?: number):
   solutions.push(soln);
   const distance1 = soln.length2();
 
-  // console.log(`N${1}):`, dist0, dist1);
-
   if (Math.abs(distance0 - distance1) < epsilon) return solutions;
 
   soln = new Vec2(x0 + ntCos, y0 - ntSin);
   solutions.push(soln);
   const distance2 = soln.length2();
-
-  // console.log(`N${2}):`, dist2);
 
   // Changed order so no strange X of light inside the circle. Could also sort results.
   if (Math.abs(distance1 - distance2) < epsilon) return [soln, solutions[1]];
@@ -233,8 +215,6 @@ export function getTan2(radius: number, center: Vec2 | number, pointY?: number):
   solutions.push(soln);
 
   const distance3 = soln.length2();
-
-  // console.log(`N${3}):`, dist3);
 
   if (Math.abs(distance2 - distance3) < epsilon) return [solutions[2], soln];
   if (Math.abs(distance1 - distance3) < epsilon) return [solutions[1], soln];
