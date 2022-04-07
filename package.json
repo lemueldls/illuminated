@@ -1,6 +1,6 @@
 {
   "name": "illuminated",
-  "version": "1.2.3-4",
+  "version": "1.3.0",
   "author": "Lemuel DLS",
   "description": "A 2D lights and shadows rendering engine for HTML5 applications and games.",
   "type": "module",
