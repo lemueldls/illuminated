@@ -3,9 +3,10 @@
   "env": {
     "jest": true
   },
-  "extends": ["airbnb-base", "google", "@lemueldls"],
+  "extends": ["google", "@lemueldls"],
   "rules": {
-    "import/extensions": ["error", "never"],
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
 
     "no-useless-constructor": "off",
     "no-empty-function": "off",
