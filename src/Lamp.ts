@@ -58,7 +58,7 @@ export default class Lamp extends Light {
    */
   public roughness: number;
 
-  #uniqueId = 0;
+  static #uniqueId = 0;
 
   #cacheHashcode?: string;
 
@@ -93,7 +93,7 @@ export default class Lamp extends Light {
     this.angle = angle ?? 0;
     this.roughness = roughness ?? 0;
 
-    if (this.id === 0) this.id = ++this.#uniqueId;
+    if (this.id === 0) this.id = ++Lamp.#uniqueId;
   }
 
   /**
@@ -183,12 +183,12 @@ export default class Lamp extends Light {
     const cache = createCanvasAnd2dContext(`gc${id}`, D, D);
     const { ctx, w, h } = cache;
 
-    const g = ctx.createRadialGradient(center.x, center.y, 0, d, d, d);
+    const gradient = ctx.createRadialGradient(center.x, center.y, 0, d, d, d);
 
-    g.addColorStop(Math.min(1, radius / distance), color);
-    g.addColorStop(1, getRGBA(color, 0));
+    gradient.addColorStop(Math.min(1, radius / distance), color);
+    gradient.addColorStop(1, getRGBA(color, 0));
 
-    ctx.fillStyle = g;
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, w, h);
 
     this.#gcache = cache;
