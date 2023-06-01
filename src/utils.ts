@@ -104,7 +104,7 @@ export const getRGBA = (() => {
 
     const [red, green, blue] = context.getImageData(0, 0, 1, 1).data;
 
-    return `rgba(${[red, green, blue, alpha]})`;
+    return `rgba(${[red, green, blue, alpha].toString()})`;
   };
 })();
 
