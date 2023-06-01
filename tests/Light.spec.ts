@@ -1,3 +1,5 @@
+import { it, expect } from "vitest";
+
 import Light from "../src/Light";
 import Vec2 from "../src/Vec2";
 

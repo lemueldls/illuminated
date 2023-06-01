@@ -1,3 +1,5 @@
+import { it, expect } from "vitest";
+
 import Vec2 from "../src/Vec2";
 
 const v1 = new Vec2(2, 5);

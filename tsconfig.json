@@ -7,13 +7,14 @@
     "module": "esnext",
     "target": "es2016",
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": ".",
     "noImplicitAny": true,
     "strictNullChecks": true,
     "sourceMap": true,
     "declaration": true,
     "esModuleInterop": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "resolveJsonModule": true
   },
   "typedocOptions": {
     "entryPoints": ["src/illuminated.ts"],
@@ -21,6 +22,6 @@
     "name": "Illuminated",
     "hideGenerator": true
   },
-  "files": ["src/illuminated.ts"],
+  "files": ["src/illuminated.ts", "vite.config.ts"],
   "exclude": ["dist", "node_modules"]
 }

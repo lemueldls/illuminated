@@ -1,3 +1,5 @@
+import { it, expect } from "vitest";
+
 import RectangleObject from "../src/RectangleObject";
 import Vec2 from "../src/Vec2";
 
@@ -9,7 +11,6 @@ it("should be instance", () => expect(obj1).toBeInstanceOf(RectangleObject));
 
 it("should construct", () => {
   expect(obj1).toEqual({
-    uniqueId: 0,
     diffuse: 0.8,
     points: [new Vec2(), new Vec2(), new Vec2(), new Vec2()],
     topLeft: new Vec2(),

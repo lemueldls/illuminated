@@ -1,3 +1,5 @@
+import { it, expect } from "vitest";
+
 import DiscObject from "../src/DiscObject";
 import Vec2 from "../src/Vec2";
 
@@ -8,7 +10,6 @@ it("should be instance", () => expect(obj).toBeInstanceOf(DiscObject));
 
 it("should construct", () =>
   expect(obj).toEqual({
-    uniqueId: 0,
     diffuse: 0.8,
     center: new Vec2(0, 0),
     radius: 20

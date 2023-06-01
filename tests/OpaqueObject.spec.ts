@@ -1,3 +1,5 @@
+import { it, expect } from "vitest";
+
 import OpaqueObject from "../src/OpaqueObject";
 import Vec2 from "../src/Vec2";
 
@@ -6,7 +8,7 @@ const ctx = document.createElement("canvas").getContext("2d");
 
 it("should be instance", () => expect(obj).toBeInstanceOf(OpaqueObject));
 
-it("should construct", () => expect(obj).toEqual({ diffuse: 0.8, uniqueId: 0 }));
+it("should construct", () => expect(obj).toEqual({ diffuse: 0.8 }));
 
 it("should calculate bounds", () =>
   expect(obj.bounds()).toStrictEqual({

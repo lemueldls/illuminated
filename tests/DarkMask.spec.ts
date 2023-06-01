@@ -1,3 +1,5 @@
+import { it, expect } from "vitest";
+
 import DarkMask from "../src/DarkMask";
 import Light from "../src/Light";
 

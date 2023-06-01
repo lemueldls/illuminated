@@ -3,6 +3,10 @@
   "env": {
     "jest": true
   },
-  "extends": "@lemueldls",
+  "extends": [
+    "plugin:@typescript-eslint/strict",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "@lemueldls"
+  ],
   "ignorePatterns": ["dist"]
 }

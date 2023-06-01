@@ -45,7 +45,7 @@ export function createCanvasAnd2dContext(
     document.body.append(canvas);
   }
 
-  const context = canvas.getContext("2d") as CanvasRenderingContext2D;
+  const context = canvas.getContext("2d")!;
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   canvas.width = width;
@@ -95,7 +95,7 @@ export const getRGBA = (() => {
   canvas.width = 1;
   canvas.height = 1;
 
-  const context = canvas.getContext("2d") as CanvasRenderingContext2D;
+  const context = canvas.getContext("2d")!;
 
   return (color: string, alpha = 1) => {
     context.clearRect(0, 0, 1, 1);
@@ -125,7 +125,7 @@ export const extractColorAndAlpha: (color: string) => {
   canvas.width = 1;
   canvas.height = 1;
 
-  const context = canvas.getContext("2d") as CanvasRenderingContext2D;
+  const context = canvas.getContext("2d")!;
 
   /**
    * @param value
@@ -170,7 +170,7 @@ export function getTan2(radius: number, center: Vec2 | number, pointY?: number):
 
   if (typeof center === "number") {
     x0 = center;
-    y0 = pointY || 0;
+    y0 = pointY ?? 0;
     length2 = x0 * x0 + y0 * y0;
   } else {
     x0 = center.x;

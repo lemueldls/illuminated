@@ -127,16 +127,16 @@ export default class Light {
 
     if (this.#vismaskhash !== hash) {
       this.#vismaskhash = hash;
-      this.#vismaskcache = createCanvasAnd2dContext(`vm${this.id}`, 2 * d, 2 * d);
+      this.#vismaskcache = createCanvasAnd2dContext(`vm${this.id!}`, 2 * d, 2 * d);
 
       const { ctx, w, h } = this.#vismaskcache;
 
-      const g = ctx.createRadialGradient(d, d, 0, d, d, d);
+      const gradient = ctx.createRadialGradient(d, d, 0, d, d, d);
 
-      g.addColorStop(0, "rgba(0,0,0,1)");
-      g.addColorStop(1, "rgba(0,0,0,0)");
+      gradient.addColorStop(0, "rgba(0,0,0,1)");
+      gradient.addColorStop(1, "rgba(0,0,0,0)");
 
-      ctx.fillStyle = g;
+      ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, w, h);
     }
 

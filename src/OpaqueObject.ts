@@ -11,8 +11,6 @@ export type OpaqueObjectOptions = Partial<Pick<OpaqueObject, "diffuse">>;
  * An opaque object.
  */
 export default class OpaqueObject {
-  public uniqueId = 0;
-
   /**
    * How diffuse the opaque object should be.
    *

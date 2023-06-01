@@ -1,3 +1,5 @@
+import { it, expect } from "vitest";
+
 import PolygonObject from "../src/PolygonObject";
 import Vec2 from "../src/Vec2";
 
@@ -21,14 +23,12 @@ it("should be instance", () => {
 });
 
 it("should construct", () => {
-  expect(obj1).toEqual({ uniqueId: 0, diffuse: 0.8, points: [] });
+  expect(obj1).toEqual({ diffuse: 0.8, points: [] });
   expect(obj2).toEqual({
-    uniqueId: 0,
     diffuse: 0.8,
     points: [new Vec2(3, 7), new Vec2(10, 5), new Vec2(-5, -8), new Vec2(6, 2), new Vec2(-1, 9)]
   });
   expect(obj3).toEqual({
-    uniqueId: 0,
     diffuse: 0.8,
     points: [
       new Vec2(-1.5, -3.5),
@@ -39,7 +39,6 @@ it("should construct", () => {
     ]
   });
   expect(obj4).toEqual({
-    uniqueId: 0,
     diffuse: 0.8,
     points: [
       new Vec2(1.5, 3.5),

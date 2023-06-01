@@ -1,8 +1,10 @@
+import { it, expect } from "vitest";
+
 import Lamp from "../src/Lamp";
 import Vec2 from "../src/Vec2";
 
-const l1 = new Lamp();
-const l2 = new Lamp({ id: 1 });
+const l1 = new Lamp({ id: 1 });
+const l2 = new Lamp({ id: 2 });
 
 const ctx = document.createElement("canvas").getContext("2d");
 
