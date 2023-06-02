@@ -12,7 +12,7 @@ export type OpaqueObjectOptions = Partial<Pick<OpaqueObject, "diffuse">>;
  */
 export default class OpaqueObject {
   /**
-   * How diffuse the opaque object should be.
+   * The intensity of the light penetration in objects.
    *
    * @default 0.8
    */

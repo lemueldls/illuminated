@@ -37,14 +37,6 @@ export default class Lamp extends Light {
   public radius: number;
 
   /**
-   * The number of points which will be used for shadow projection.
-   * It defines the quality of the rendering.
-   *
-   * @default 1
-   */
-  public samples: number;
-
-  /**
    * The angle of the orientation of the lamp.
    *
    * @default 0
@@ -84,12 +76,11 @@ export default class Lamp extends Light {
   public constructor(options: LampOptions = {}) {
     super(options);
 
-    const { id, color, radius, samples, angle, roughness } = options;
+    const { id, color, radius, angle, roughness } = options;
 
     this.id = id ?? 0;
     this.color = color ?? "rgba(250,220,150,0.8)";
     this.radius = radius ?? 0;
-    this.samples = samples ?? 1;
     this.angle = angle ?? 0;
     this.roughness = roughness ?? 0;
 

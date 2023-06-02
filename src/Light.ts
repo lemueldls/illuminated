@@ -4,7 +4,9 @@ import Vec2 from "./Vec2";
 /**
  * Options to be applied to the light object.
  */
-export type LightOptions = Partial<Pick<Light, "position" | "distance" | "diffuse">>;
+export type LightOptions = Partial<
+  Pick<Light, "position" | "distance" | "diffuse" | "samples" | "hidden">
+>;
 
 /**
  * A light object.
@@ -25,13 +27,26 @@ export default class Light {
   public distance: number;
 
   /**
-   * How diffuse the light is.
+   * The intensity of the light penetration in objects.
    *
    * @default 0.8
    */
   public diffuse: number;
 
-  public samples?: number;
+  /**
+   * The number of points which will be used for shadow projection.
+   * It defines the quality of the rendering.
+   *
+   * @default 1
+   */
+  public samples: number;
+
+  /**
+   * Whether the light is hidden or not.
+   *
+   * @default false
+   */
+  public hidden: boolean;
 
   protected id?: number;
 
@@ -43,11 +58,13 @@ export default class Light {
    * @param options - Options to be applied to the light object.
    */
   public constructor(options: LightOptions = {}) {
-    const { position, distance, diffuse } = options;
+    const { position, distance, diffuse, samples, hidden } = options;
 
     this.position = position ?? new Vec2();
     this.distance = distance ?? 100;
     this.diffuse = diffuse ?? 0.8;
+    this.samples = samples ?? 1;
+    this.hidden = hidden ?? false;
   }
 
   /**
@@ -144,7 +161,7 @@ export default class Light {
   }
 
   /**
-   * Return a string hash key representing the lamp.
+   * Return a string hash key representing the light.
    *
    * @returns The hash key.
    */
