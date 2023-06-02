@@ -33,6 +33,8 @@ export default class Light {
 
   public samples?: number;
 
+  public hidden?: boolean;
+
   protected id?: number;
 
   #vismaskhash?: string;
