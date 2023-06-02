@@ -5,7 +5,7 @@
   "description": "A 2D lights and shadows rendering engine for HTML5 applications and games.",
   "type": "module",
   "sideEffects": false,
-  "packageManager": "yarn@4.0.0-rc.44",
+  "packageManager": "yarn@4.0.0-rc.45",
   "exports": {
     "types": "./dist/illuminated.d.ts",
     "require": "./dist/illuminated.cjs",
