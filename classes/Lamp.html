@@ -26,7 +26,7 @@ Lamps can also be &quot;oriented&quot; in a specific direction.</p>
 <ul class="tsd-hierarchy">
 <li><span class="target">Lamp</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L17">Lamp.ts:17</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L17">Lamp.ts:17</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -46,11 +46,12 @@ Lamps can also be &quot;oriented&quot; in a specific direction.</p>
 <a href="Lamp.html#color" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>color</span></a>
 <a href="Lamp.html#diffuse" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>diffuse</span></a>
 <a href="Lamp.html#distance" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>distance</span></a>
+<a href="Lamp.html#hidden" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>hidden</span></a>
 <a href="Lamp.html#id" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>id</span></a>
 <a href="Lamp.html#position" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>position</span></a>
 <a href="Lamp.html#radius" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>radius</span></a>
 <a href="Lamp.html#roughness" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>roughness</span></a>
-<a href="Lamp.html#samples" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>samples</span></a>
+<a href="Lamp.html#samples" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>samples</span></a>
 <a href="Lamp.html#_uniqueId" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>#unique<wbr/>Id</span></a>
 </div></section>
 <section class="tsd-index-section">
@@ -79,37 +80,37 @@ Lamps can also be &quot;oriented&quot; in a specific direction.</p>
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">Pick</span><span class="tsd-signature-symbol">&lt;</span><a href="Lamp.html" class="tsd-signature-type tsd-kind-class">Lamp</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;angle&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;color&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;samples&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;radius&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;roughness&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">Pick</span><span class="tsd-signature-symbol">&lt;</span><a href="Light.html" class="tsd-signature-type tsd-kind-class">Light</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;position&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;distance&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;diffuse&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = {}</span></h5>
+<h5><span class="tsd-kind-parameter">options</span>: <span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">Pick</span><span class="tsd-signature-symbol">&lt;</span><a href="Lamp.html" class="tsd-signature-type tsd-kind-class">Lamp</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;angle&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;id&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;color&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;samples&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;radius&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;roughness&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type ">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type ">Pick</span><span class="tsd-signature-symbol">&lt;</span><a href="Light.html" class="tsd-signature-type tsd-kind-class">Light</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;position&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;hidden&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;distance&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;diffuse&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;samples&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = {}</span></h5>
 <div class="tsd-comment tsd-typography"><p>Options to be applied to the lamp.</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Lamp.html" class="tsd-signature-type tsd-kind-class">Lamp</a></h4><aside class="tsd-sources">
 <p>Overrides <a href="Light.html">Light</a>.<a href="Light.html#constructor">constructor</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L84">Lamp.ts:84</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L76">Lamp.ts:76</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
 <section class="tsd-panel tsd-member tsd-is-private"><a id="_cacheHashcode" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagOptional">Optional</code> <span>#cache<wbr/>Hashcode</span><a href="#_cacheHashcode" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">#cache<wbr/>Hashcode</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L63">Lamp.ts:63</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L55">Lamp.ts:55</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-private"><a id="_gcache" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagOptional">Optional</code> <span>#gcache</span><a href="#_gcache" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">#gcache</span><span class="tsd-signature-symbol">?:</span> <a href="../interfaces/CanvasAndContext.html" class="tsd-signature-type tsd-kind-interface">CanvasAndContext</a></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L65">Lamp.ts:65</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L57">Lamp.ts:57</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-private tsd-is-inherited"><a id="_vismaskcache" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagOptional">Optional</code> <span>#vismaskcache</span><a href="#_vismaskcache" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">#vismaskcache</span><span class="tsd-signature-symbol">?:</span> <a href="../interfaces/CanvasAndContext.html" class="tsd-signature-type tsd-kind-interface">CanvasAndContext</a></div><aside class="tsd-sources">
 <p>Inherited from <a href="Light.html">Light</a>.<a href="Light.html#_vismaskcache">#vismaskcache</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Light.ts#L40">Light.ts:40</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Light.ts#L55">Light.ts:55</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-private tsd-is-inherited"><a id="_vismaskhash" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagOptional">Optional</code> <span>#vismaskhash</span><a href="#_vismaskhash" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">#vismaskhash</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <p>Inherited from <a href="Light.html">Light</a>.<a href="Light.html#_vismaskhash">#vismaskhash</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Light.ts#L38">Light.ts:38</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Light.ts#L53">Light.ts:53</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="angle" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>angle</span><a href="#angle" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">angle</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -119,7 +120,7 @@ Lamps can also be &quot;oriented&quot; in a specific direction.</p>
 </code><button>Copy</button></pre>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L52">Lamp.ts:52</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L44">Lamp.ts:44</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="color" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>color</span><a href="#color" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">color</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
@@ -129,18 +130,18 @@ Lamps can also be &quot;oriented&quot; in a specific direction.</p>
 </code><button>Copy</button></pre>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L30">Lamp.ts:30</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L30">Lamp.ts:30</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="diffuse" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>diffuse</span><a href="#diffuse" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">diffuse</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-<div class="tsd-comment tsd-typography"><p>How diffuse the light is.</p>
+<div class="tsd-comment tsd-typography"><p>The intensity of the light penetration in objects.</p>
 
 <h3>Default</h3><pre><code class="language-ts"><span class="hl-4">0.8</span>
 </code><button>Copy</button></pre>
 </div><aside class="tsd-sources">
 <p>Inherited from <a href="Light.html">Light</a>.<a href="Light.html#diffuse">diffuse</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Light.ts#L32">Light.ts:32</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Light.ts#L34">Light.ts:34</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="distance" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>distance</span><a href="#distance" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">distance</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -151,7 +152,18 @@ Lamps can also be &quot;oriented&quot; in a specific direction.</p>
 </div><aside class="tsd-sources">
 <p>Inherited from <a href="Light.html">Light</a>.<a href="Light.html#distance">distance</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Light.ts#L25">Light.ts:25</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Light.ts#L27">Light.ts:27</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited"><a id="hidden" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>hidden</span><a href="#hidden" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">hidden</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+<div class="tsd-comment tsd-typography"><p>Whether the light is hidden or not.</p>
+
+<h3>Default</h3><pre><code class="language-ts"><span class="hl-2">false</span>
+</code><button>Copy</button></pre>
+</div><aside class="tsd-sources">
+<p>Inherited from <a href="Light.html">Light</a>.<a href="Light.html#hidden">hidden</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Light.ts#L49">Light.ts:49</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="id" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>id</span><a href="#id" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">id</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -162,7 +174,7 @@ Lamps can also be &quot;oriented&quot; in a specific direction.</p>
 </div><aside class="tsd-sources">
 <p>Overrides <a href="Light.html">Light</a>.<a href="Light.html#id">id</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L23">Lamp.ts:23</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L23">Lamp.ts:23</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="position" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>position</span><a href="#position" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">position</span><span class="tsd-signature-symbol">:</span> <a href="Vec2.html" class="tsd-signature-type tsd-kind-class">Vec2</a></div>
@@ -173,7 +185,7 @@ Lamps can also be &quot;oriented&quot; in a specific direction.</p>
 </div><aside class="tsd-sources">
 <p>Inherited from <a href="Light.html">Light</a>.<a href="Light.html#position">position</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Light.ts#L18">Light.ts:18</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Light.ts#L20">Light.ts:20</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="radius" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>radius</span><a href="#radius" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">radius</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -183,7 +195,7 @@ Lamps can also be &quot;oriented&quot; in a specific direction.</p>
 </code><button>Copy</button></pre>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L37">Lamp.ts:37</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L37">Lamp.ts:37</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member"><a id="roughness" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>roughness</span><a href="#roughness" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">roughness</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -193,8 +205,8 @@ Lamps can also be &quot;oriented&quot; in a specific direction.</p>
 </code><button>Copy</button></pre>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L59">Lamp.ts:59</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member"><a id="samples" class="tsd-anchor"></a>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L51">Lamp.ts:51</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-is-inherited"><a id="samples" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>samples</span><a href="#samples" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">samples</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 <div class="tsd-comment tsd-typography"><p>The number of points which will be used for shadow projection.
@@ -203,14 +215,14 @@ It defines the quality of the rendering.</p>
 <h3>Default</h3><pre><code class="language-ts"><span class="hl-4">1</span>
 </code><button>Copy</button></pre>
 </div><aside class="tsd-sources">
-<p>Overrides <a href="Light.html">Light</a>.<a href="Light.html#samples">samples</a></p>
+<p>Inherited from <a href="Light.html">Light</a>.<a href="Light.html#samples">samples</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L45">Lamp.ts:45</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Light.ts#L42">Light.ts:42</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-private"><a id="_uniqueId" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <code class="tsd-tag ts-flagPrivate">Private</code> <span>#unique<wbr/>Id</span><a href="#_uniqueId" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">#unique<wbr/>Id</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L61">Lamp.ts:61</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L53">Lamp.ts:53</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member"><a id="bounds" class="tsd-anchor"></a>
@@ -225,7 +237,7 @@ The property values are <a href="Vec2.html" class="tsd-kind-class"><code>Vec2</c
 <aside class="tsd-sources">
 <p>Overrides <a href="Light.html">Light</a>.<a href="Light.html#bounds">bounds</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L137">Lamp.ts:137</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L128">Lamp.ts:128</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="center" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>center</span><a href="#center" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -238,7 +250,7 @@ i.e. The position where the lamp intensity is the highest</p>
 <aside class="tsd-sources">
 <p>Overrides <a href="Light.html">Light</a>.<a href="Light.html#center">center</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L122">Lamp.ts:122</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L113">Lamp.ts:113</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="forEachSample" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>for<wbr/>Each<wbr/>Sample</span><a href="#forEachSample" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -269,7 +281,7 @@ The function will be passed a vector representing the position of the sample.</p
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <p>Overrides <a href="Light.html">Light</a>.<a href="Light.html#forEachSample">forEachSample</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L220">Lamp.ts:220</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L211">Lamp.ts:211</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-private"><a id="getGradientCache" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>get<wbr/>Gradient<wbr/>Cache</span><a href="#getGradientCache" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-private">
@@ -286,7 +298,7 @@ The function will be passed a vector representing the position of the sample.</p
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/CanvasAndContext.html" class="tsd-signature-type tsd-kind-interface">CanvasAndContext</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L171">Lamp.ts:171</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L162">Lamp.ts:162</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected"><a id="getHashCache" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>get<wbr/>Hash<wbr/>Cache</span><a href="#getHashCache" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected">
@@ -298,7 +310,7 @@ The function will be passed a vector representing the position of the sample.</p
 <aside class="tsd-sources">
 <p>Overrides <a href="Light.html">Light</a>.<a href="Light.html#getHashCache">getHashCache</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L104">Lamp.ts:104</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L95">Lamp.ts:95</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"><a id="getVisibleMaskCache" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagProtected">Protected</code> <span>get<wbr/>Visible<wbr/>Mask<wbr/>Cache</span><a href="#getVisibleMaskCache" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
@@ -310,7 +322,7 @@ The function will be passed a vector representing the position of the sample.</p
 <aside class="tsd-sources">
 <p>Inherited from <a href="Light.html">Light</a>.<a href="Light.html#getVisibleMaskCache">getVisibleMaskCache</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Light.ts#L123">Light.ts:123</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Light.ts#L140">Light.ts:140</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="mask" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>mask</span><a href="#mask" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -328,7 +340,7 @@ The function will be passed a vector representing the position of the sample.</p
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <p>Overrides <a href="Light.html">Light</a>.<a href="Light.html#mask">mask</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L153">Lamp.ts:153</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L144">Lamp.ts:144</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="render" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>render</span><a href="#render" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -346,7 +358,7 @@ The function will be passed a vector representing the position of the sample.</p
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <p>Overrides <a href="Light.html">Light</a>.<a href="Light.html#render">render</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/8a90506/src/Lamp.ts#L204">Lamp.ts:204</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/lemueldls/illuminated/blob/4895bf8/src/Lamp.ts#L195">Lamp.ts:195</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -375,11 +387,12 @@ The function will be passed a vector representing the position of the sample.</p
 <li><a href="#color" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>color</span></a></li>
 <li><a href="#diffuse" class="tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>diffuse</span></a></li>
 <li><a href="#distance" class="tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>distance</span></a></li>
+<li><a href="#hidden" class="tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>hidden</span></a></li>
 <li><a href="#id" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>id</span></a></li>
 <li><a href="#position" class="tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>position</span></a></li>
 <li><a href="#radius" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>radius</span></a></li>
 <li><a href="#roughness" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>roughness</span></a></li>
-<li><a href="#samples" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>samples</span></a></li>
+<li><a href="#samples" class="tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>samples</span></a></li>
 <li><a href="#_uniqueId" class="tsd-is-private"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>#unique<wbr/>Id</span></a></li>
 <li><a href="#bounds" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>bounds</span></a></li>
 <li><a href="#center" class=""><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>center</span></a></li>
