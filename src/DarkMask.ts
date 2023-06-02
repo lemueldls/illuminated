@@ -58,7 +58,7 @@ export default class DarkMask {
 
     ctx.globalCompositeOperation = "destination-out";
 
-    for (const light of this.lights) light.mask(ctx);
+    for (const light of this.lights) if (!light.hidden) light.mask(ctx);
 
     ctx.restore();
   }

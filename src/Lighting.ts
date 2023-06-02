@@ -83,7 +83,7 @@ export default class Lighting {
 
     const { light } = this;
 
-    const n = light.samples!;
+    const n = light.samples;
 
     ctx.clearRect(0, 0, w, h);
     // Draw shadows for each light sample and objects
