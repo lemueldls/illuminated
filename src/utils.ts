@@ -71,7 +71,7 @@ export function path(
 
   context.moveTo(point.x, point.y);
 
-  for (let index = 1, l = points.length; index < l; ++index) {
+  for (let index = 1, l = points.length; index < l; index++) {
     point = points[index];
     context.lineTo(point.x, point.y);
   }

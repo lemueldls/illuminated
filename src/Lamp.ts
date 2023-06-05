@@ -54,7 +54,7 @@ export default class Lamp extends Light {
 
   #cacheHashcode?: string;
 
-  #gcache?: CanvasAndContext;
+  #gradientCache?: CanvasAndContext;
 
   /**
    * @param options - Options to be applied to the lamp.
@@ -84,7 +84,7 @@ export default class Lamp extends Light {
     this.angle = angle ?? 0;
     this.roughness = roughness ?? 0;
 
-    if (this.id === 0) this.id = ++Lamp.#uniqueId;
+    if (this.id === 0) this.id = Lamp.#uniqueId++;
   }
 
   /**
@@ -162,19 +162,19 @@ export default class Lamp extends Light {
   private getGradientCache(center: Vec2): CanvasAndContext | undefined {
     const hashcode = this.getHashCache();
 
-    if (this.#cacheHashcode === hashcode) return this.#gcache;
+    if (this.#cacheHashcode === hashcode) return this.#gradientCache;
 
     this.#cacheHashcode = hashcode;
 
     const { distance, id, radius, color } = this;
 
-    const d = Math.round(distance);
-    const D = d * 2;
+    const dr = Math.round(distance);
+    const cr = dr * 2;
 
-    const cache = createCanvasAnd2dContext(`gc${id}`, D, D);
+    const cache = createCanvasAnd2dContext(`gc${id}`, cr, cr);
     const { ctx, w, h } = cache;
 
-    const gradient = ctx.createRadialGradient(center.x, center.y, 0, d, d, d);
+    const gradient = ctx.createRadialGradient(center.x, center.y, 0, dr, dr, dr);
 
     gradient.addColorStop(Math.min(1, radius / distance), color);
     gradient.addColorStop(1, getRGBA(color, 0));
@@ -182,7 +182,7 @@ export default class Lamp extends Light {
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, w, h);
 
-    this.#gcache = cache;
+    this.#gradientCache = cache;
 
     return cache;
   }
@@ -212,11 +212,11 @@ export default class Lamp extends Light {
     const { samples, radius, position } = this;
 
     // "spiral" algorithm for spreading emit samples
-    for (let s = 0, l = samples; s < l; ++s) {
-      const a = s * GOLDEN_ANGLE;
+    for (let s = 0; s < samples; s++) {
+      const angle = s * GOLDEN_ANGLE;
       const r = Math.sqrt(s / samples) * radius;
 
-      const delta = new Vec2(Math.cos(a) * r, Math.sin(a) * r);
+      const delta = new Vec2(Math.cos(angle) * r, Math.sin(angle) * r);
 
       callback(position.add(delta));
     }

@@ -20,7 +20,8 @@ it("should construct", () =>
     color: "rgba(250,220,150,0.8)",
     radius: 0,
     angle: 0,
-    roughness: 0
+    roughness: 0,
+    hidden: false
   }));
 
 it("should get center", () => expect(l1.center()).toStrictEqual(new Vec2(100, 100)));

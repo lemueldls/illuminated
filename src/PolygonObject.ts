@@ -42,7 +42,7 @@ export default class PolygonObject extends OpaqueObject {
     const topLeft = first.copy();
     const bottomRight = topLeft.copy();
 
-    for (let p = 1, l = this.points.length; p < l; ++p) {
+    for (let p = 1, l = this.points.length; p < l; p++) {
       const { x, y } = this.points[p];
 
       if (x > bottomRight.x) bottomRight.x = x;
@@ -161,7 +161,7 @@ export default class PolygonObject extends OpaqueObject {
     let a = points[points.length - 1];
     let b: Vec2;
 
-    for (let p = 0, l = points.length; p < l; ++p, a = b) {
+    for (let p = 0; p < points.length; p++, a = b) {
       b = points[p];
 
       if (a.inBound(bounds.topLeft, bounds.bottomRight)) {

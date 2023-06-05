@@ -28,7 +28,7 @@ export default class Lighting {
 
   #cache?: CanvasAndContext;
 
-  #castcache?: CanvasAndContext;
+  #castCache?: CanvasAndContext;
 
   /**
    * @param options - Options to be applied to the light.
@@ -48,7 +48,7 @@ export default class Lighting {
    */
   private createCache(w: number, h: number): void {
     this.#cache = createCanvasAnd2dContext("lc", w, h);
-    this.#castcache = createCanvasAnd2dContext("lcc", w, h);
+    this.#castCache = createCanvasAnd2dContext("lcc", w, h);
   }
 
   /**
@@ -79,7 +79,7 @@ export default class Lighting {
    * @param ctxoutput - The canvas context onto which the shadows will be drawn.
    */
   public cast(ctxoutput: CanvasRenderingContext2D): void {
-    const { ctx, w, h, canvas } = this.#castcache!;
+    const { ctx, w, h, canvas } = this.#castCache!;
 
     const { light } = this;
 
@@ -95,7 +95,7 @@ export default class Lighting {
     const { objects } = this;
 
     light.forEachSample((position) => {
-      for (let o = 0, l = objects.length; o < l; ++o)
+      for (let o = 0, l = objects.length; o < l; o++)
         if (objects[o].contains(position)) {
           ctx.fillRect(topLeft.x, topLeft.y, bottomRight.x - topLeft.x, bottomRight.y - topLeft.y);
           return;

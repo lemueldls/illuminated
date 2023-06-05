@@ -9,7 +9,13 @@ const ctx = document.createElement("canvas").getContext("2d");
 it("should be instance", () => expect(light).toBeInstanceOf(Light));
 
 it("should construct", () =>
-  expect(light).toEqual({ position: new Vec2(0, 0), distance: 100, diffuse: 0.8 }));
+  expect(light).toEqual({
+    position: new Vec2(0, 0),
+    distance: 100,
+    diffuse: 0.8,
+    samples: 1,
+    hidden: false
+  }));
 
 it("should render nothing", () => expect(light.render(ctx)).toBeUndefined());
 

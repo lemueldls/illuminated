@@ -50,9 +50,9 @@ export default class Light {
 
   protected id?: number;
 
-  #vismaskhash?: string;
+  #vismaskHash?: string;
 
-  #vismaskcache?: CanvasAndContext;
+  #vismaskCache?: CanvasAndContext;
 
   /**
    * @param options - Options to be applied to the light object.
@@ -85,11 +85,11 @@ export default class Light {
    * @param context - The canvas context onto which the mask will be rendered.
    */
   public mask(context: CanvasRenderingContext2D): void {
-    const c = this.getVisibleMaskCache()!;
+    const cache = this.getVisibleMaskCache()!;
 
     const { x, y } = this.position;
 
-    context.drawImage(c.canvas, Math.round(x - c.w / 2), Math.round(y - c.h / 2));
+    context.drawImage(cache.canvas, Math.round(x - cache.w / 2), Math.round(y - cache.h / 2));
   }
 
   /**
@@ -145,11 +145,11 @@ export default class Light {
     // Prevent the distance from being too small
     if (d < 1) return;
 
-    if (this.#vismaskhash !== hash) {
-      this.#vismaskhash = hash;
-      this.#vismaskcache = createCanvasAnd2dContext(`vm${this.id!}`, 2 * d, 2 * d);
+    if (this.#vismaskHash !== hash) {
+      this.#vismaskHash = hash;
+      this.#vismaskCache = createCanvasAnd2dContext(`vm${this.id!}`, 2 * d, 2 * d);
 
-      const { ctx, w, h } = this.#vismaskcache;
+      const { ctx, w, h } = this.#vismaskCache;
 
       const gradient = ctx.createRadialGradient(d, d, 0, d, d, d);
 
@@ -160,7 +160,7 @@ export default class Light {
       ctx.fillRect(0, 0, w, h);
     }
 
-    return this.#vismaskcache;
+    return this.#vismaskCache;
   }
 
   /**

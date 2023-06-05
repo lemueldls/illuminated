@@ -54,9 +54,7 @@ export default class DiscObject extends OpaqueObject {
 
     let originToM = center.sub(origin);
 
-    const tangentLines = getTan2(radius, originToM);
-
-    let [originToA, originToB] = tangentLines;
+    let [originToA, originToB] = getTan2(radius, originToM);
 
     const a = originToA.add(origin);
     const b = originToB.add(origin);

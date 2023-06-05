@@ -11,7 +11,7 @@ const l2 = new Lighting({
   objects: [new DiscObject()]
 });
 const l3 = new Lighting({
-  light: new Lamp({ id: 1 }),
+  light: new Lamp(),
   objects: [
     new OpaqueObject({
       diffuse: undefined
@@ -33,7 +33,18 @@ it("should construct", () => {
     objects: [new DiscObject()]
   });
   expect(l3).toEqual({
-    light: new Lamp({ id: 1 }),
+    light: {
+      angle: 0,
+      color: "rgba(250,220,150,0.8)",
+      diffuse: 0.8,
+      distance: 100,
+      hidden: false,
+      id: 0,
+      position: { x: 0, y: 0 },
+      radius: 0,
+      roughness: 0,
+      samples: 1
+    },
     objects: [new OpaqueObject()]
   });
 });
