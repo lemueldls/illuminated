@@ -142,6 +142,9 @@ export default class Light {
     const d = Math.floor(this.distance * 1.4);
     const hash = `${d}`;
 
+    // Prevent the distance from being too small
+    if (d < 1) return;
+
     if (this.#vismaskhash !== hash) {
       this.#vismaskhash = hash;
       this.#vismaskcache = createCanvasAnd2dContext(`vm${this.id!}`, 2 * d, 2 * d);
