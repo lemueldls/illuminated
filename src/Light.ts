@@ -89,7 +89,12 @@ export default class Light {
 
     const { x, y } = this.position;
 
-    context.drawImage(cache.canvas, Math.round(x - cache.w / 2), Math.round(y - cache.h / 2));
+    const width = Math.round(x - cache.w / 2);
+    const height = Math.round(y - cache.h / 2);
+
+    if (width < 1 || height < 1 || isNaN(width) || isNaN(height)) return;
+
+    context.drawImage(cache.canvas, width, height);
   }
 
   /**
